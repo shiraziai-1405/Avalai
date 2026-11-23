@@ -1,0 +1,76 @@
+{
+  "version": "1.0.0",
+  "provider": "avalai",
+  "provider_docs": "https://docs.avalai.org/en/guides/generate-videos-using-veo",
+  "defaults": {
+    "model": "veo-3.1-fast-generate-001",
+    "size": "720x1280",
+    "seconds": 8,
+    "aspect_ratio": "9:16",
+    "resolution": "720p",
+    "audio_mode": "native",
+    "approval_required_before_batch": true,
+    "max_parallel_scenes": 2,
+    "max_retries_per_scene": 1
+  },
+  "presets": [
+    {
+      "id": "reels_fast",
+      "label_fa": "ریلز اقتصادی",
+      "model": "veo-3.1-fast-generate-001",
+      "size": "720x1280",
+      "seconds": 8,
+      "style": "vertical social video, energetic but clean pacing, strong subject framing, realistic motion, natural ambient audio",
+      "notes_fa": "پیش‌فرض نمونه‌سازی و شبکه اجتماعی؛ قبل از تولید دسته‌ای یک صحنه تست شود."
+    },
+    {
+      "id": "reels_quality",
+      "label_fa": "ریلز با کیفیت بالاتر",
+      "model": "veo-3.1-generate-001",
+      "size": "720x1280",
+      "seconds": 8,
+      "style": "cinematic vertical composition, controlled camera movement, coherent subject details, rich natural soundscape",
+      "notes_fa": "هزینه بالاتر؛ فقط بعد از تأیید نمونه Fast یا برای خروجی نهایی استفاده شود."
+    },
+    {
+      "id": "landscape_1080",
+      "label_fa": "ویدئوی افقی 1080p",
+      "model": "veo-3.1-generate-001",
+      "size": "1920x1080",
+      "seconds": 8,
+      "style": "cinematic landscape framing, clear subject separation, deliberate camera movement, natural lighting and synchronized ambience",
+      "notes_fa": "طبق مستند جاری 1080p برای 16:9 است؛ در صورت تغییر مدل/قابلیت دوباره بررسی شود."
+    },
+    {
+      "id": "storyboard_draft",
+      "label_fa": "پیش‌نویس استوری‌بورد",
+      "model": "veo-3.1-fast-generate-001",
+      "size": "1280x720",
+      "seconds": 4,
+      "style": "single clear shot, one main action, simple background, minimal camera movement, concise scene concept",
+      "notes_fa": "برای تست ایده و پرامپت؛ ارزان‌تر به‌خاطر مدت کوتاه‌تر."
+    }
+  ],
+  "validation": {
+    "allowed_seconds": [
+      4,
+      6,
+      8
+    ],
+    "allowed_aspect_ratios": [
+      "16:9",
+      "9:16"
+    ],
+    "landscape_720p": "1280x720",
+    "portrait_720p": "720x1280",
+    "landscape_1080p": "1920x1080",
+    "portrait_1080p": "not_assumed_supported",
+    "warning_fa": "پارامترهای نهایی را با مستند جاری AvalAI و پاسخ API اعتبارسنجی کن؛ این preset تضمین‌کننده پشتیبانی همیشگی نیست."
+  },
+  "cost_reference_usd_per_second": {
+    "veo-3.1-fast-generate-001": 0.15,
+    "veo-3.1-generate-001": 0.4,
+    "verified_at": "2026-11-23",
+    "source": "AvalAI official Veo 3.1 documentation"
+  }
+}

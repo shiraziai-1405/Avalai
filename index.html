@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Technology Intelligence Studio</title>
+<style>
+:root{--bg:#0b1020;--panel:#121a2d;--panel2:#18233a;--line:#293653;--text:#edf2ff;--muted:#9eacc8;--accent:#ff9d45;--accent2:#ffd09e;--green:#48d6a0;--blue:#79a9ff;--red:#ff7e87;--shadow:0 18px 50px #0005}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(900px 500px at 90% -10%,#26395c66,transparent 65%),var(--bg);color:var(--text);font-family:Tahoma,"Segoe UI",sans-serif;line-height:1.7}
+button,input,select{font:inherit}button{cursor:pointer}.wrap{max-width:1440px;margin:auto;padding:26px}
+header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:24px}.brand{display:flex;align-items:center;gap:13px}.logo{width:48px;height:48px;border-radius:16px;background:linear-gradient(135deg,#ffbd78,#f0782e);display:grid;place-items:center;color:#231507;font-size:24px;font-weight:900;box-shadow:0 8px 25px #ff963d44}.brand h1{font-size:22px;margin:0}.brand p{color:var(--muted);font-size:12px;margin:2px 0 0}.status{display:flex;gap:10px;align-items:center;color:var(--muted);font-size:12px}.dot{width:8px;height:8px;border-radius:50%;background:var(--green);display:inline-block}.hero{background:linear-gradient(120deg,#1a2945,#172239 60%,#29233a);border:1px solid #354563;border-radius:24px;padding:26px 28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;gap:25px;align-items:center;margin-bottom:20px}.hero h2{font-size:25px;margin:0 0 8px}.hero p{color:#b8c5dc;margin:0;max-width:800px;font-size:14px}.hero-actions{display:flex;gap:9px;flex-wrap:wrap}.btn{border:1px solid var(--line);background:#202d47;color:var(--text);padding:10px 15px;border-radius:12px;font-size:13px}.btn.primary{background:linear-gradient(135deg,#ffb66e,#f1873a);color:#261606;border:0;font-weight:bold}.btn:hover{filter:brightness(1.12)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:16px 0 22px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px 18px}.stat b{display:block;font-size:24px;color:var(--accent2)}.stat span{font-size:12px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:270px 1fr;gap:18px}.sidebar,.main{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px;min-width:0}.sidebar h3,.main h3{font-size:15px;margin:0 0 14px}.field{margin-bottom:15px}.field label{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}.field input,.field select{width:100%;background:#0d1527;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px;outline:none}.field input:focus,.field select:focus{border-color:var(--accent)}.checks{display:grid;gap:8px}.check{display:flex;gap:8px;align-items:center;font-size:12px;color:#c8d2e5}.check input{accent-color:var(--accent)}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:15px}.tab{border:1px solid var(--line);background:#0e1729;color:#c1cce0;padding:8px 13px;border-radius:11px;font-size:12px}.tab.active{background:#4a321f;border-color:#d88745;color:#ffd3a7}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}.toolbar .muted{font-size:12px;color:var(--muted)}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:linear-gradient(145deg,#18243a,#121b2e);border:1px solid #2c3b58;border-radius:16px;padding:16px;min-width:0;transition:.18s}.card:hover{transform:translateY(-2px);border-color:#6d7893}.cardtop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.modelname{font-size:15px;font-weight:bold;word-break:break-word}.provider{font-size:11px;color:var(--muted);margin-top:3px}.badge{font-size:10px;padding:4px 8px;border-radius:20px;background:#25344f;color:#cbd8f2;white-space:nowrap}.badge.best{background:#4b351f;color:#ffd09e}.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:14px 0}.price{background:#0d1729;border-radius:10px;padding:8px}.price span{display:block;color:var(--muted);font-size:10px}.price b{font-size:13px;color:#f5d3ae}.meta{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.tag{font-size:10px;color:#b8c8e5;border:1px solid #354664;padding:3px 7px;border-radius:7px}.cardfoot{display:flex;justify-content:space-between;align-items:center;gap:10px;border-top:1px solid #2b3852;padding-top:11px;margin-top:10px}.cardfoot small{font-size:10px;color:var(--muted)}.card-actions{display:flex;gap:6px}.mini{border:1px solid #3a4b6b;background:#1d2a42;color:#e8efff;padding:6px 9px;border-radius:8px;font-size:11px}.empty{padding:35px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:14px;grid-column:1/-1}.section{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.sectionhead h3{margin:0}.calcgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.result{background:#0c1628;border:1px solid var(--line);border-radius:13px;padding:13px}.result span{font-size:11px;color:var(--muted)}.result b{display:block;font-size:20px;color:var(--accent2);direction:ltr;text-align:right}.note{font-size:11px;color:var(--muted);margin-top:12px}.modal{position:fixed;inset:0;background:#050914cc;display:none;align-items:center;justify-content:center;padding:18px;z-index:5}.modal.show{display:flex}.dialog{width:min(700px,100%);max-height:85vh;overflow:auto;background:#121d32;border:1px solid #435473;border-radius:20px;padding:22px;box-shadow:var(--shadow)}.dialoghead{display:flex;justify-content:space-between;align-items:center}.dialog h3{margin:0}.close{background:none;border:0;color:white;font-size:24px}.detailgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}.detail{background:#0c1628;border:1px solid var(--line);border-radius:10px;padding:10px;font-size:12px;overflow-wrap:anywhere}.detail span{display:block;color:var(--muted);font-size:10px}.footer{color:#71809c;font-size:11px;text-align:center;padding:25px}.hidden{display:none!important}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{order:2}.cards{grid-template-columns:1fr}.hero{display:block}.hero-actions{margin-top:18px}.stats{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.wrap{padding:13px}.hero{padding:19px}.hero h2{font-size:20px}.stats{gap:8px}.stat{padding:11px}.stat b{font-size:20px}.calcgrid{grid-template-columns:1fr}.detailgrid{grid-template-columns:1fr}header{align-items:flex-start;flex-direction:column}}
+
+textarea{font:inherit;line-height:1.8;resize:vertical}
+#advisorAnswer a{color:var(--accent2)}
+.advisor-msg{border-bottom:1px solid var(--line);padding:10px 0}
+.repo-result{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap}
+.repo-result h4{margin:0;font-size:14px;direction:ltr;text-align:right}
+.repo-result p{margin:6px 0;color:var(--muted);font-size:12px}
+.smallstat{font-size:11px;color:var(--muted)}
+
+
+/* v6 technology & agent library */
+.lib-controls{display:grid;grid-template-columns:2fr 1fr 1fr;gap:10px;margin:14px 0}.lib-controls input,.lib-controls select{width:100%;background:#0d1527;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:10px}.lib-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.lib-card{background:linear-gradient(145deg,#18243a,#111b2d);border:1px solid #30415f;border-radius:15px;padding:14px;min-width:0}.lib-card h4{margin:0 0 5px;font-size:14px}.lib-card p{font-size:11px;color:#b4c1d8;margin:8px 0}.lib-card .meta{margin:8px 0}.lib-card a{color:var(--accent2);font-size:11px}.lib-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.fit{font-size:10px;border-radius:7px;padding:3px 7px;background:#203d39;color:#9ce7c9}.fit.mid{background:#493b27;color:#ffd09e}.fit.low{background:#492d36;color:#ffb3bc}.lib-count{font-size:12px;color:var(--muted)}.library-tabs{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.library-tabs button{border:1px solid var(--line);background:#101a2d;color:#dce6f8;border-radius:9px;padding:7px 11px;font-size:11px}.library-tabs button.active{background:#4a321f;border-color:#d88745;color:#ffd3a7}.callout{border:1px solid #5b4935;background:#282319;border-radius:12px;padding:12px;font-size:12px;color:#f1d4ad;margin:12px 0}
+@media(max-width:900px){.lib-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lib-controls{grid-template-columns:1fr 1fr}.lib-controls input{grid-column:1/-1}}
+@media(max-width:560px){.lib-grid,.lib-controls{grid-template-columns:1fr}.lib-controls input{grid-column:auto}}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+ <div class="brand"><div class="logo">A</div><div><h1>Technology Intelligence Studio</h1><p>موتور انتخاب فناوری بر اساس کاتالوگ زنده AvalAI</p></div></div>
+ <div class="status"><span class="dot" id="statusDot"></span><span id="statusText">در انتظار دریافت مدل‌ها</span></div>
+</header>
+<section class="hero">
+ <div><h2>برای هر کار، بهترین مدل را پیدا کن.</h2><p>مدل‌ها و قیمت‌های قابل مشاهده AvalAI را بررسی می‌کند، دانش فنی مستند را بازیابی می‌کند و برای معماری، مدل، هزینه و پیاده‌سازی پیشنهاد اجرایی می‌دهد. رتبه‌بندی فعلی بر پایه قابلیت و هزینه است؛ نه ادعای بنچمارک کیفیت.</p></div>
+ <div class="hero-actions"><button class="btn primary" id="refreshBtn">↻ دریافت مدل‌های زنده</button><button class="btn" id="importBtn">بارگذاری models.json</button><input type="file" id="fileInput" accept=".json,application/json" class="hidden"></div>
+</section>
+
+<section class="section" id="productIdentity" style="border-color:#8b643e">
+ <div class="sectionhead"><h3>هویت سرویس جدید</h3><span class="badge best">مستقل از AiDoost</span></div>
+ <p class="note">این فایل برای یک سرویس مستقل طراحی شده است. نام فعلی «Technology Intelligence Studio» صرفاً نام کاری محیط است؛ نام تجاری نهایی هنوز تعیین نشده. معماری و پیشنهادها نباید به برند یا محصول AiDoost وابسته فرض شوند.</p>
+</section>
+
+<div class="stats">
+ <div class="stat"><b id="totalCount">—</b><span>مدل دریافت‌شده</span></div>
+ <div class="stat"><b id="providerCount">—</b><span>ارائه‌دهنده</span></div>
+ <div class="stat"><b id="cheapCount">—</b><span>مدل با قیمت ورودی زیر ۱ دلار</span></div>
+ <div class="stat"><b id="lastUpdated">—</b><span>آخرین به‌روزرسانی</span></div>
+</div>
+<div class="layout">
+<aside class="sidebar">
+ <h3>فیلتر و جست‌وجو</h3>
+ <div class="field"><label>جست‌وجوی نام یا شناسه</label><input id="search" placeholder="مثلاً gpt، gemini، deepseek..."></div>
+ <div class="field"><label>ارائه‌دهنده</label><select id="provider"><option value="">همه ارائه‌دهنده‌ها</option></select></div>
+ <div class="field"><label>حداکثر قیمت ورودی (دلار / ۱M توکن)</label><input id="maxPrice" type="number" min="0" step="0.01" placeholder="بدون محدودیت"></div>
+ <div class="field"><label>حداقل پنجره زمینه (توکن)</label><select id="context"><option value="0">بدون محدودیت</option><option value="32000">۳۲ هزار</option><option value="128000">۱۲۸ هزار</option><option value="200000">۲۰۰ هزار</option><option value="1000000">۱ میلیون</option></select></div>
+ <div class="field"><label>قابلیت‌های لازم</label><div class="checks">
+ <label class="check"><input type="checkbox" value="supports_reasoning"> استدلال</label>
+ <label class="check"><input type="checkbox" value="supports_vision"> ورودی تصویر</label>
+ <label class="check"><input type="checkbox" value="supports_function_calling"> فراخوانی ابزار</label>
+ <label class="check"><input type="checkbox" value="supports_web_search"> جست‌وجوی وب</label>
+ <label class="check"><input type="checkbox" value="supports_audio_input"> ورودی صوت</label>
+ <label class="check"><input type="checkbox" value="supports_video_input"> ورودی ویدئو</label>
+ <label class="check"><input type="checkbox" value="supports_prompt_caching"> کش پرامپت</label>
+ </div></div>
+ <button class="btn" id="clearBtn" style="width:100%">پاک کردن فیلترها</button>
+</aside>
+<main class="main">
+ <div class="toolbar"><div><h3 style="margin:0">کتابخانه مدل‌ها</h3><span class="muted" id="shownCount">داده‌ای بارگذاری نشده است</span></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><label class="muted" for="sortBy">مرتب‌سازی:</label><select id="sortBy" style="background:#0d1527;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:8px"><option value="recommended">پیشنهاد هوشمند</option><option value="total">هزینه کل نمونه (ورودی + خروجی)</option><option value="input">ارزان‌ترین ورودی</option><option value="output">ارزان‌ترین خروجی</option><option value="name">نام الفبایی</option></select><span class="muted">قیمت‌ها بسته به نوع مدل، واحد متفاوت دارند</span></div></div>
+ <div class="tabs" id="tabs">
+  <button class="tab active" data-cat="all">همه</button>
+  <button class="tab" data-cat="text">مدل متن</button>
+  <button class="tab" data-cat="agent">ایجنت و ابزار</button>
+  <button class="tab" data-cat="vision">بینایی و تصویر</button>
+  <button class="tab" data-cat="audio">صوت و گفتار</button>
+  <button class="tab" data-cat="video">ویدئو</button>
+  <button class="tab" data-cat="imagegen">تولید تصویر</button>
+  <button class="tab" data-cat="embedding">Embedding</button>
+ </div>
+ <div class="cards" id="cards"><div class="empty">برای شروع روی «دریافت مدل‌های زنده» بزن.</div></div>
+</main>
+</div>
+<section class="section" id="agentGuide">
+ <div class="sectionhead"><h3>راهنمای فناوری ساخت ایجنت و اتوماسیون شبکه‌های اجتماعی</h3><span class="muted">تمرکز: ابزارهای جایگزین MCP و ایجنت‌های آماده</span></div>
+ <p class="note">MCP فقط یک پروتکل اتصال ابزار است؛ برای ساخت ایجنت اجباری نیست. می‌توان ابزارها را مستقیم به‌صورت Function Calling، REST API، SDK، صف کار یا کنترل مرورگر متصل کرد. برای سناریوهای شبکه اجتماعی که API رسمی در دسترس نیست، اتوماسیون مرورگر یک مسیر جایگزین است؛ اما شکننده‌تر است و ممکن است با تغییر رابط کاربری، کپچا، احراز هویت دومرحله‌ای یا شرایط استفاده پلتفرم مختل شود. این روش به معنی دور زدن محدودیت‌های امنیتی یا دسترسی غیرمجاز نیست.</p>
+ <div class="cards">
+  <article class="card"><div class="cardtop"><div><div class="modelname">Playwright</div><div class="provider">کنترل مرورگر واقعی · متن‌باز</div></div><span class="badge best">پیشنهاد اصلی</span></div><p class="note">برای ورود با حسابی که مالک آن هستید، پیمایش صفحات، بارگذاری رسانه، پر کردن فرم و انتشار دستی/نیمه‌خودکار. مناسب ساخت ابزار اختصاصی قابل کنترل.</p><div class="meta"><span class="tag">Node.js / Python</span><span class="tag">بدون نیاز به MCP</span><span class="tag">پایدارتر از کلیک مختصاتی</span></div><div class="cardfoot"><small>بهترین انتخاب برای لایه اجرای مرورگر</small><a class="mini" href="https://playwright.dev/" target="_blank" rel="noopener">مستندات</a></div></article>
+  <article class="card"><div class="cardtop"><div><div class="modelname">Browser Use</div><div class="provider">ایجنت کنترل‌کننده مرورگر · متن‌باز</div></div><span class="badge">ایجنت آماده‌تر</span></div><p class="note">به مدل زبانی اجازه می‌دهد با مرورگر کار کند. برای نمونه‌سازی سریع مناسب است؛ برای انتشار حساس باید گام‌ها، مجوزها، اعتبارسنجی و تأیید انسانی اضافه شود.</p><div class="meta"><span class="tag">Python</span><span class="tag">Browser Agent</span><span class="tag">قابل اتصال به مدل‌های مختلف</span></div><div class="cardfoot"><small>مناسب نمونه اولیه ایجنت شبکه اجتماعی</small><a class="mini" href="https://github.com/browser-use/browser-use" target="_blank" rel="noopener">GitHub</a></div></article>
+  <article class="card"><div class="cardtop"><div><div class="modelname">Stagehand</div><div class="provider">اتوماسیون مرورگر با زبان طبیعی</div></div><span class="badge">جایگزین</span></div><p class="note">لایه‌ای برای انجام عملیات مرورگر با دستورات معنایی و انتخابگرهای مقاوم‌تر. برای گردش‌کارهای مشخص و قابل آزمون مناسب است.</p><div class="meta"><span class="tag">TypeScript</span><span class="tag">Browser automation</span><span class="tag">بدون الزام MCP</span></div><div class="cardfoot"><small>گزینه مناسب اکوسیستم JavaScript</small><a class="mini" href="https://github.com/browserbase/stagehand" target="_blank" rel="noopener">GitHub</a></div></article>
+  <article class="card"><div class="cardtop"><div><div class="modelname">Orchestrator اختصاصی</div><div class="provider">Worker + Queue + Cron · بدون وابستگی به سرویس اتوماسیون پولی</div></div><span class="badge best">پیشنهاد اصلی</span></div><p class="note">برای گردش‌کارها، جدول jobs در MariaDB، صف Redis یا Cloudflare Queues، Workerهای سبک و Python Worker برای پردازش رسانه کافی است. retry، dead-letter، قفل job و ثبت هزینه را در کد خودت کنترل کن.</p><div class="meta"><span class="tag">PHP / Python</span><span class="tag">Redis / Queues</span><span class="tag">Cron</span></div><div class="cardfoot"><small>هزینه زیرساخت و سهمیه‌ها همچنان باید پایش شوند.</small></div></article>
+  <article class="card"><div class="cardtop"><div><div class="modelname">LangGraph</div><div class="provider">چارچوب ایجنت Stateful</div></div><span class="badge">برای محصول جدی</span></div><p class="note">کنترل دقیق مراحل، وضعیت پایدار، توقف و ادامه، تأیید انسانی و گردش‌کارهای چندمرحله‌ای. مناسب ایجنتی که باید جست‌وجو، ترجمه، بازبینی، آماده‌سازی و انتشار را جداگانه اجرا کند.</p><div class="meta"><span class="tag">Python / JS</span><span class="tag">Checkpoint</span><span class="tag">Human-in-the-loop</span></div><div class="cardfoot"><small>انتخاب قوی برای orchestration پیچیده</small><a class="mini" href="https://docs.langchain.com/oss/python/langgraph/overview" target="_blank" rel="noopener">مستندات</a></div></article>
+  <article class="card"><div class="cardtop"><div><div class="modelname">CrewAI</div><div class="provider">تیم ایجنت‌های نقش‌محور</div></div><span class="badge">چندایجنتی</span></div><p class="note">تعریف نقش‌هایی مانند پژوهشگر، مترجم، ویراستار، کنترل کیفیت و ناشر. برای تقسیم کار مفید است؛ ولی برای انتشار واقعی باید ابزارهای اجرا و کنترل خطا جداگانه طراحی شوند.</p><div class="meta"><span class="tag">Python</span><span class="tag">Multi-agent</span><span class="tag">Role-based</span></div><div class="cardfoot"><small>مناسب تیم‌های عامل تخصصی</small><a class="mini" href="https://docs.crewai.com/" target="_blank" rel="noopener">مستندات</a></div></article>
+  <article class="card"><div class="cardtop"><div><div class="modelname">Pydantic AI</div><div class="provider">چارچوب سبک و تایپ‌سیف</div></div><span class="badge">کنترل‌پذیر</span></div><p class="note">برای ساخت ایجنت‌های کوچک و قابل تست با ورودی/خروجی ساختاریافته، ابزارهای تابعی و اعتبارسنجی داده. گزینه‌ای خوب برای سرویس‌های Python اختصاصی.</p><div class="meta"><span class="tag">Python</span><span class="tag">Structured output</span><span class="tag">Function tools</span></div><div class="cardfoot"><small>مناسب میکروسرویس ایجنتی سبک</small><a class="mini" href="https://ai.pydantic.dev/" target="_blank" rel="noopener">مستندات</a></div></article>
+  <article class="card"><div class="cardtop"><div><div class="modelname">Flowise / Dify</div><div class="provider">سازنده بصری ایجنت و گردش‌کار</div></div><span class="badge">آماده‌تر برای آزمایش</span></div><p class="note">برای ساخت نمونه اولیه، اتصال مدل‌ها و ابزارها و بررسی سریع جریان‌ها. قبل از انتخاب برای هسته تولیدی، مجوز، محدودیت‌های نسخه، هزینه میزبانی و امکان خروجی گرفتن از گردش‌کار را بررسی کنید.</p><div class="meta"><span class="tag">Visual builder</span><span class="tag">API</span><span class="tag">Self-host options</span></div><div class="cardfoot"><small>برای نمونه‌سازی سریع</small><span><a class="mini" href="https://flowiseai.com/" target="_blank" rel="noopener">Flowise</a> <a class="mini" href="https://dify.ai/" target="_blank" rel="noopener">Dify</a></span></div></article>
+ </div>
+ <h3 style="margin:22px 0 10px">مدل‌های آماده ایجنتی؛ تفاوت مهم</h3>
+ <p class="note">«مدل ایجنت» با «فریم‌ورک ایجنت» و «ایجنت آماده» یکی نیست. مدل، توانایی استدلال/فراخوانی ابزار را می‌دهد؛ فریم‌ورک حلقه اجرا و کنترل را می‌سازد؛ محصول آماده یک گردش‌کار یا عامل از پیش ساخته‌شده ارائه می‌کند.</p>
+ <div class="cards">
+  <article class="card"><div class="modelname">مدل‌های دارای Function Calling</div><p class="note">در فهرست بالا قابلیت supports_function_calling و supports_parallel_function_calling را فیلتر کن. برای ایجنت‌های مبتنی بر ابزار، این قابلیت از نام مدل مهم‌تر است. ابزارها را در کد خودت اجرا کن و خروجی را دوباره به مدل بده.</p></article>
+  <article class="card"><div class="modelname">مدل‌های Computer Use / Vision</div><p class="note">برای کنترل رابط گرافیکی، مدل باید تصویر/اسکرین‌شات را بفهمد و در صورت نیاز مختصات یا عملیات ساختاریافته تولید کند. وجود Vision به‌تنهایی به معنی پشتیبانی از Computer Use نیست؛ مدل و محیط اجرا را جداگانه اعتبارسنجی کن.</p></article>
+  <article class="card"><div class="modelname">OpenHands</div><p class="note">ایجنت آماده متن‌باز با تمرکز بر کارهای نرم‌افزاری و کدنویسی؛ برای مدیریت مخزن کد و کارهای توسعه مناسب‌تر است، نه انتشار شبکه اجتماعی.</p><a class="mini" href="https://github.com/All-Hands-AI/OpenHands" target="_blank" rel="noopener">GitHub</a></article>
+  <article class="card"><div class="modelname">OpenAI Agents SDK / Google ADK</div><p class="note">SDKهای آماده برای ساخت و هماهنگی ایجنت‌ها هستند، نه مدل زبانی مستقل. انتخابشان را بر اساس سازگاری با provider، زبان برنامه‌نویسی و نیاز به کنترل اجرا انجام بده.</p><a class="mini" href="https://openai.github.io/openai-agents-python/" target="_blank" rel="noopener">OpenAI Agents SDK</a> <a class="mini" href="https://google.github.io/adk-docs/" target="_blank" rel="noopener">Google ADK</a></article>
+ </div>
+ <div class="result" style="margin-top:14px"><span>معماری پیشنهادی برای ایجنت‌های اجتماعی</span><b style="font-size:14px;direction:rtl;text-align:right;color:#f5d3ae">LLM + LangGraph / Pydantic AI + Playwright + Queue + Human Approval</b><p class="note">گردش‌کار: کشف محتوا → بررسی حقوق استفاده → دانلود/دریافت مجاز → رونویسی و ترجمه → بازنویسی بومی‌سازی‌شده → کنترل کیفیت → آماده‌سازی رسانه → نمایش پیش‌نمایش → تأیید کاربر → انتشار از طریق API رسمی در صورت دسترسی یا رابط مرورگر مجاز → ثبت نتیجه و خطا.</p></div>
+ <p class="note">محدودیت شبکه‌های اجتماعی: نبود API رسمی یا دسترسی تجاری را نمی‌توان با تضمین جایگزین کرد. ورود و انتشار خودکار ممکن است با قوانین پلتفرم، کپچا، تأیید ورود، محدودیت حساب یا تغییر UI مواجه شود. برای Instagram، اولویت با روش‌های مجاز و تأیید انسانی است؛ از ذخیره رمز عبور خام، دور زدن کپچا یا کنترل‌های امنیتی و انتشار انبوه ناخواسته پرهیز شود.</p>
+</section>
+
+
+
+<section class="section" id="freeAgentMarket" style="border-color:#8b643e">
+ <div class="sectionhead"><h3>بازار ایجنت‌های آماده رایگان و متن‌باز</h3><span class="badge best">Ready Agents · Templates · Skills</span></div>
+ <p class="note">فهرست شروع از پروژه‌های عمومی GitHub؛ رایگان بودن کد به معنی رایگان بودن مدل/API، میزبانی، GPU یا تمام قابلیت‌ها نیست. فعلاً هیچ‌یک از ایجنت‌های کامل این فهرست بدون بررسی محیط اجرا، «تأییدشده برای اجرای بدون VPS» محسوب نمی‌شود. وضعیت نسخه، مجوز و سلامت مخزن را پیش از استفاده بررسی کن؛ این فهرست رتبه‌بندی کیفیت قطعی نیست.</p>
+ <div class="callout">راهنمای برچسب‌ها: «متن‌باز/کد عمومی» یعنی مخزن قابل مشاهده است؛ «هزینه اجرا» ممکن است شامل API مدل، جست‌وجو، مرورگر، GPU یا هاست باشد. هیچ پروژه‌ای بدون بررسی مجوز، وابستگی و امنیت نباید مستقیماً روی اطلاعات حساس اجرا شود.</div>
+ <div class="lib-controls"><input id="agentSearch" placeholder="جست‌وجو: research، social media، coding، browser..."/><select id="agentCategory"><option value="all">همه دسته‌ها</option><option value="research">تحقیق و وب</option><option value="coding">برنامه‌نویسی</option><option value="browser">مرورگر و دستیار</option><option value="multi">چندعاملی و عمومی</option><option value="content">تولید محتوا و رسانه</option><option value="social">شبکه‌های اجتماعی</option></select><select id="agentFit"><option value="all">همه وضعیت‌های زیرساخت</option><option value="conditional">مشروط به Python Hosting</option><option value="server">معمولاً نیازمند سرور قوی</option></select></div>
+ <div class="lib-grid" id="agentCards"></div><p class="lib-count" id="agentCount"></p>
+ <div class="sectionhead" style="margin-top:22px"><h3>پیدا کردن ایجنت‌های تازه در GitHub</h3><span class="muted">جست‌وجوی زنده مخازن عمومی</span></div>
+ <div class="lib-controls"><input id="agentLiveQuery" placeholder="مثلاً social media agent / youtube automation / research agent"/><select id="agentLiveLang"><option value="">همه زبان‌ها</option><option>Python</option><option>TypeScript</option><option>JavaScript</option><option>Go</option></select><select id="agentLiveSort"><option value="stars">بیشترین ستاره</option><option value="updated">آخرین به‌روزرسانی</option></select></div>
+ <button class="btn primary" id="agentLiveSearch">جست‌وجوی ایجنت‌ها در GitHub</button> <a class="mini" id="agentLiveDirect" href="https://github.com/topics/ai-agents" target="_blank" rel="noopener">مشاهده همه AI Agents</a>
+ <div id="agentLiveResults" style="margin-top:13px"></div>
+ <h3 style="margin-top:22px">سه لایه‌ای که نباید با هم اشتباه شوند</h3>
+ <div class="cards">
+  <article class="card"><h4>Ready Agents</h4><p class="note">برنامه‌ای نسبتاً کامل با گردش‌کار و رابط یا API مشخص؛ ممکن است برای اجرا به نصب و تنظیمات نیاز داشته باشد.</p></article>
+  <article class="card"><h4>Agent Frameworks / Templates</h4><p class="note">چارچوب یا قالبی برای ساخت ایجنت؛ محصول آماده و قابل استفاده نهایی نیست.</p></article>
+  <article class="card"><h4>Skills / Tools / MCP Servers</h4><p class="note">قابلیت‌های قابل اتصال به ایجنت؛ به‌تنهایی ایجنت مستقل محسوب نمی‌شوند.</p></article>
+ </div>
+</section>
+
+<section class="section" id="technologyLibrary">
+ <div class="sectionhead"><h3>کتابخانه فناوری‌ها و ابزارهای ایجنت، محتوا و شبکه اجتماعی</h3><span class="badge">Python · JavaScript · API · Open Source</span></div>
+ <p class="note">این فهرست فناوری‌های منتخب برای شروع طراحی است. برچسب اجرا یک ارزیابی معماری اولیه است، نه تضمین سازگاری با هر میزبان.</p>
+ <div class="library-tabs" id="techTabs"><button class="active" data-cat="all">همه</button><button data-cat="agent">ساخت ایجنت</button><button data-cat="memory">حافظه و RAG</button><button data-cat="content">تولید محتوا</button><button data-cat="media">صوت و ویدئو</button><button data-cat="social">شبکه اجتماعی</button><button data-cat="web">وب و تحقیق</button><button data-cat="workflow">صف و زمان‌بندی</button></div>
+ <div class="lib-controls"><input id="techSearch" placeholder="نام کتابخانه یا کاربرد را جست‌وجو کن..."/><select id="techLang"><option value="all">همه زبان‌ها</option><option value="Python">Python</option><option value="JavaScript">JavaScript / TypeScript</option><option value="API">API / چندزبانه</option></select><select id="techRuntime"><option value="all">همه محیط‌ها</option><option value="edge">Edge / Worker-friendly</option><option value="python">Python Hosting</option><option value="server">سرور / VPS محتمل</option></select></div>
+ <div class="lib-grid" id="techCards"></div><p class="lib-count" id="techCount"></p>
+ <div class="callout"><b>محدودیت زیرساخت:</b> Cloudflare Workers برای API، وب‌هوک، Cron و orchestration سبک مناسب است؛ محیط اجرای Python و FFmpeg یا پردازش طولانی را جایگزین نمی‌کند. برای MoviePy، OpenCV، Whisper، Playwright و پردازش رسانه باید وجود Python runtime، حافظه، فضای دیسک و امکان اجرای job در هاست واقعاً تست شود. در حال حاضر VPS در معماری فرض نشده است.</div>
+</section>
+
+<section class="section" id="agentBlueprint">
+ <div class="sectionhead"><h3>موتور انتخاب و تطبیق ایجنت با پروژه</h3><span class="badge best">Decision Support</span></div>
+ <p class="note">شرح پروژه را وارد کن تا یک نقشه اولیه از اجزای لازم، گزینه‌های متن‌باز و محدودیت زیرساخت دریافت کنی. این نسخه موتور قواعدمحور اولیه است؛ برای تحلیل عمیق می‌توانی خروجی را به مشاور AvalAI همین صفحه بدهی.</p>
+ <div class="field"><label>ایده یا وظیفه‌ای که می‌خواهی خودکار شود</label><textarea id="agentIdea" rows="3" style="width:100%;background:#0d1527;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px" placeholder="مثلاً هر روز موضوعات داغ را پیدا کند، مقاله فارسی و تصویر بسازد و بعد از تأیید من در تلگرام و شبکه‌های اجتماعی منتشر کند..."></textarea></div>
+ <button class="btn primary" id="buildAgentPlan">تحلیل نیاز و پیشنهاد پشته فناوری</button> <button class="btn" id="sendPlanAdvisor">ارسال شرح پروژه به مشاور AvalAI</button>
+ <div id="agentPlanResult" style="margin-top:14px"></div>
+</section>
+
+<section class="section" id="aidoostStack">
+ <div class="sectionhead"><h3>معماری فناوری برای سرویس مستقل جدید</h3><span class="muted">بدون وابستگی به n8n یا اتوماسیون پولی</span></div>
+ <p class="note">این معماری بر اساس ابزارهایی تنظیم شده که گفتی در اختیار داری: GitHub، Cloudflare Workers، Telegram و هاست Python. ایده اصلی این است که هر ربات فقط یک چت‌بات نباشد؛ هر ربات یک «موتور تولید و مدیریت محتوا» داشته باشد و کانال‌های انتشار، رابط‌های مستقل همان ربات باشند.</p>
+ <div class="cards">
+  <article class="card"><div class="cardtop"><div><div class="modelname">GitHub</div><div class="provider">مرکز کد، نسخه‌ها و کنترل کیفیت</div></div><span class="badge best">هسته توسعه</span></div><p class="note">کد هر ربات، تنظیمات، تست‌ها و Workflowها در مخزن مستقل یا ساختار Monorepo مدیریت شود. Pull Request، تست خودکار، اسکن امنیتی و انتشار نسخه از همین‌جا کنترل شود.</p><div class="meta"><span class="tag">Git</span><span class="tag">Actions</span><span class="tag">CI/CD</span><span class="tag">Release</span></div><div class="cardfoot"><small>GitHub Actions برای مخازن عمومی استاندارد رایگان است؛ مخازن خصوصی سهمیه دارند.</small><a class="mini" href="https://docs.github.com/en/actions" target="_blank" rel="noopener">مستندات</a></div></article>
+  <article class="card"><div class="cardtop"><div><div class="modelname">Cloudflare Workers</div><div class="provider">درگاه API، وب‌هوک و زمان‌بندی سبک</div></div><span class="badge best">هسته ارتباطی</span></div><p class="note">دریافت وب‌هوک Telegram، احراز هویت، Router درخواست‌ها، فراخوانی مدل، مدیریت وضعیت سبک و زمان‌بندی کارهای کوتاه. برای پردازش طولانی ویدئو یا صوت، Worker را به صف و Python Worker وصل کن.</p><div class="meta"><span class="tag">Webhook</span><span class="tag">Cron Triggers</span><span class="tag">Queues</span><span class="tag">API Gateway</span></div><div class="cardfoot"><small>سهمیه رایگان و قیمت Queue/Workflow را قبل از بار واقعی کنترل کن.</small><a class="mini" href="https://developers.cloudflare.com/workers/" target="_blank" rel="noopener">مستندات</a></div></article>
+  <article class="card"><div class="cardtop"><div><div class="modelname">Python Hosting</div><div class="provider">موتور پردازش و ابزارهای سنگین</div></div><span class="badge best">هسته پردازش</span></div><p class="note">کارهای زمان‌بر و رسانه‌ای: دریافت مجاز فایل، FFmpeg، استخراج صدا، Whisper/Faster-Whisper، OCR، پردازش تصویر، تولید زیرنویس، Playwright و ابزارهای اختصاصی. از Worker یک Job با شناسه بگیرد و نتیجه را به API برگرداند.</p><div class="meta"><span class="tag">FastAPI</span><span class="tag">FFmpeg</span><span class="tag">Worker Process</span><span class="tag">Playwright</span></div><div class="cardfoot"><small>محدودیت CPU/RAM/زمان اجرا و سیاست میزبان Python را بررسی کن.</small><a class="mini" href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener">FastAPI</a></div></article>
+  <article class="card"><div class="cardtop"><div><div class="modelname">Telegram</div><div class="provider">رابط کاربر، فرمان و تأیید انتشار</div></div><span class="badge">کانال تعاملی</span></div><p class="note">ربات تلگرام می‌تواند ورودی محتوا، دریافت عکس/ویدئو، نمایش پیش‌نمایش، انتخاب لحن، تأیید انتشار، گزارش عملکرد، فروش اعتبار و پشتیبانی را پوشش دهد. منطق اصلی نباید داخل Bot Handler قفل شود.</p><div class="meta"><span class="tag">Bot API</span><span class="tag">Webhook</span><span class="tag">Mini App</span><span class="tag">Payments*</span></div><div class="cardfoot"><small>*امکانات پرداخت و دسترسی بسته به کشور و روش پرداخت بررسی شود.</small><a class="mini" href="https://core.telegram.org/bots/api" target="_blank" rel="noopener">Bot API</a></div></article>
+ </div>
+ <h3 style="margin:22px 0 10px">جریان مشترک تمام ربات‌های محتوایی</h3>
+ <div class="result"><span>الگوی معماری پیشنهادی</span><b style="font-size:14px;direction:rtl;text-align:right;color:#f5d3ae">Specialist Bot → Content Engine → Channel Adapters → Analytics & Revenue</b><p class="note">هر ربات تخصصی، دانش و تحلیل حوزه خودش را دارد؛ اما موتور محتوا و انتشار می‌تواند مشترک باشد. مثلاً کف‌شناس، استرولوژی و عطارباشی هرکدام تحلیل اختصاصی می‌کنند، سپس موتور محتوا خروجی را به پست، ویدئوی کوتاه، کپشن، مقاله سایت، پیام تلگرام و محتوای YouTube تبدیل می‌کند.</p></div>
+ <div class="cards" style="margin-top:12px">
+  <article class="card"><div class="modelname">۱. موتور تخصصی (Domain Engine)</div><p class="note">دانش حوزه، مکالمه، تحلیل تصویر/صوت، ابزارهای محاسباتی، حافظه و تولید پاسخ تخصصی. خروجی ساختاریافته تولید کند، نه فقط متن آزاد.</p></article>
+  <article class="card"><div class="modelname">۲. موتور محتوا (Content Engine)</div><p class="note">تبدیل نتیجه تخصصی به سناریو، اسکریپت، کپشن، مقاله، پست چنداسلایدی، زیرنویس، عنوان، هشتگ و نسخه‌های چندزبانه. هر خروجی با قالب و محدودیت کانال مقصد ساخته شود.</p></article>
+  <article class="card"><div class="modelname">۳. مدیر کانال (Channel Manager)</div><p class="note">تقویم محتوا، صف انتشار، وضعیت هر پست، مدیریت دیدگاه‌ها در صورت دسترسی مجاز، پاسخ‌های پیشنهادی، تحلیل آمار و گزارش عملکرد. برای هر شبکه یک Adapter جدا بساز.</p></article>
+  <article class="card"><div class="modelname">۴. سنجش درآمد و کیفیت</div><p class="note">ثبت هزینه مدل/رسانه/پردازش، مصرف اعتبار، تبدیل کاربر به خریدار، درآمد هر ربات، هزینه جذب و نرخ بازگشت. هر عملیات باید شناسه Job و Cost Ledger داشته باشد.</p></article>
+ </div>
+ <h3 style="margin:22px 0 10px">جایگزین رایگان n8n در معماری تو</h3>
+ <div class="cards">
+  <article class="card"><div class="modelname">Orchestrator اختصاصی با Worker + Queue</div><span class="badge best">پیشنهاد اصلی</span><p class="note">برای نیاز فعلی، یک Orchestrator کوچک خودت بساز: جدول jobs در دیتابیس، صف Redis یا Cloudflare Queues، Worker برای رویدادها، Python Worker برای پردازش سنگین، retry و dead-letter و ثبت وضعیت. کنترل کامل داری و به اشتراک n8n وابسته نیستی.</p></article>
+  <article class="card"><div class="modelname">GitHub Actions</div><p class="note">برای تست، lint، بررسی امنیت، ساخت release و deploy استفاده کن؛ نه به‌عنوان موتور دائمی اجرای کارهای کاربران. اجرای jobهای محصول را به Worker/Queue بسپار.</p></article>
+  <article class="card"><div class="modelname">Cron + MariaDB / Redis</div><p class="note">برای نسخه ساده‌تر: زمان‌بندی با Cron، ثبت Job در MariaDB، قفل و صف سبک با Redis، اجرای worker.php یا Python worker. این مسیر با زیرساخت فعلی PHP و Redis سازگار است.</p></article>
+ </div>
+ <p class="note">«رایگان» را به معنی بدون هزینه نامحدود در نظر نگیر: سهمیه رایگان، CPU، ذخیره‌سازی، خروجی شبکه، اجرای مرورگر، مدل‌های پولی و پردازش رسانه هزینه ایجاد می‌کنند. از ابتدا سقف مصرف و محدودیت هر کاربر را تعریف کن.</p>
+</section>
+
+<section class="section" id="githubHealth">
+ <div class="sectionhead"><h3>GitHub Repository Health Check</h3><span class="muted">ارزیابی اولیه سلامت پروژه قبل از استفاده از کد آماده</span></div>
+ <p class="note">این ابزار مخزن عمومی GitHub را از نظر وضعیت نگهداری، مجوز، فعالیت، انتشار نسخه و شاخص‌های امنیت زنجیره تأمین بررسی می‌کند. برای بررسی امنیتی عمیق‌تر از OpenSSF Scorecard استفاده می‌کند. امتیاز بالا تضمین بی‌باگ بودن یا امن بودن کد نیست؛ قبل از ادغام، کد را در محیط جداگانه تست و اسکن کن.</p>
+ <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:end">
+  <div class="field" style="flex:1;min-width:230px;margin:0"><label>لینک مخزن GitHub</label><input id="repoUrl" placeholder="https://github.com/owner/repository"></div>
+  <button class="btn primary" id="checkRepoBtn">بررسی سلامت مخزن</button>
+ </div>
+ <div id="repoResults" style="margin-top:15px"><div class="empty">لینک یک مخزن عمومی GitHub را وارد کن.</div></div>
+ <div class="cards" style="margin-top:14px">
+  <article class="card"><div class="modelname">OpenSSF Scorecard</div><p class="note">برای ارزیابی نگهداری، امنیت workflow، branch protection، code review، pinned dependencies، security policy، SAST و موارد دیگر. نتایج عمومی برای بخشی از مخازن در API موجود است؛ برای مخزن فاقد نتیجه باید CLI یا GitHub Action اجرا شود.</p><a class="mini" href="https://scorecard.dev/" target="_blank" rel="noopener">وب‌سایت</a> <a class="mini" href="https://github.com/ossf/scorecard" target="_blank" rel="noopener">GitHub</a></article>
+  <article class="card"><div class="modelname">GitHub CodeQL</div><p class="note">تحلیل معنایی کد برای یافتن الگوهای آسیب‌پذیری و خطا. در مخازن عمومی GitHub.com در دسترس است؛ برای مخازن خصوصی ممکن است نیازمند پلن و قابلیت امنیتی پولی باشد.</p><a class="mini" href="https://docs.github.com/en/code-security/code-scanning/introduction-to-code-scanning/about-code-scanning-with-codeql" target="_blank" rel="noopener">مستندات</a></article>
+  <article class="card"><div class="modelname">Semgrep Community Edition</div><p class="note">اسکن ایستای کد و قواعد قابل تنظیم برای چندین زبان. نسخه Community برای شروع مناسب است، اما همه قابلیت‌های تحلیل امنیتی نسخه تجاری را ندارد.</p><a class="mini" href="https://github.com/semgrep/semgrep" target="_blank" rel="noopener">GitHub</a></article>
+  <article class="card"><div class="modelname">Gitleaks + Trivy + OSV-Scanner</div><p class="note">Gitleaks برای کشف کلیدها و Secretهای لو رفته؛ Trivy برای آسیب‌پذیری وابستگی‌ها، کانتینر و پیکربندی؛ OSV-Scanner برای بررسی آسیب‌پذیری dependencyها. این‌ها مکمل Scorecard هستند، نه جایگزین بررسی انسانی.</p><a class="mini" href="https://github.com/gitleaks/gitleaks" target="_blank" rel="noopener">Gitleaks</a> <a class="mini" href="https://github.com/aquasecurity/trivy" target="_blank" rel="noopener">Trivy</a> <a class="mini" href="https://github.com/google/osv-scanner" target="_blank" rel="noopener">OSV-Scanner</a></article>
+ </div>
+ <h3 style="margin:22px 0 10px">چک‌لیست پذیرش کد آماده برای سرویس جدید</h3>
+ <div class="checks" style="grid-template-columns:repeat(2,minmax(0,1fr));gap:10px">
+  <label class="check"><input type="checkbox"> مجوز پروژه با استفاده تجاری سازگار است</label>
+  <label class="check"><input type="checkbox"> پروژه آرشیو نشده و اخیراً نگهداری شده</label>
+  <label class="check"><input type="checkbox"> Release و نسخه‌بندی مشخص دارد</label>
+  <label class="check"><input type="checkbox"> تست خودکار و CI قابل مشاهده دارد</label>
+  <label class="check"><input type="checkbox"> وابستگی‌ها و فایل lock بررسی شده‌اند</label>
+  <label class="check"><input type="checkbox"> Secret و کلید API داخل کد نیست</label>
+  <label class="check"><input type="checkbox"> اسکن آسیب‌پذیری و static analysis انجام شده</label>
+  <label class="check"><input type="checkbox"> در محیط آزمایشی و با داده غیرواقعی اجرا شده</label>
+  <label class="check"><input type="checkbox"> فایل نصب، اسکریپت build و workflowها بازبینی شده‌اند</label>
+  <label class="check"><input type="checkbox"> کد و dependencyها با معماری PHP/Worker/Python سازگارند</label>
+ </div>
+ <p class="note">هشدار: تعداد ستاره GitHub، تعداد دانلود یا ظاهر حرفه‌ای README به‌تنهایی نشانه کیفیت نیست. مجوز را حتماً بررسی کن؛ کد بدون مجوز روشن را برای محصول تجاری قابل استفاده فرض نکن.</p>
+</section>
+
+<section class="section" id="revenueBlueprint">
+ <div class="sectionhead"><h3>طراحی درآمدزایی ربات‌های سرویس جدید</h3><span class="muted">هر ربات = محصول تخصصی + کارخانه محتوا + کانال توزیع</span></div>
+ <div class="cards">
+  <article class="card"><div class="modelname">اشتراک کاربری</div><p class="note">نسخه رایگان محدود، پلن حرفه‌ای، محدودیت تعداد تحلیل/تصویر/گزارش و حافظه یا پروژه‌های بیشتر. هزینه هر قابلیت باید قابل اندازه‌گیری باشد.</p></article>
+  <article class="card"><div class="modelname">اعتبار مصرفی</div><p class="note">فروش اعتبار برای عملیات پرهزینه مانند تحلیل تصویر، تولید تصویر، تبدیل صوت، تولید ویدئو و گزارش تخصصی. اعتبار باید قبل از اجرای کار رزرو و بعد از محاسبه هزینه تسویه شود.</p></article>
+  <article class="card"><div class="modelname">خدمات تولید محتوا</div><p class="note">بسته‌های تولید تقویم محتوا، کپشن، ویدئوی کوتاه، مقاله، ترجمه و چندزبانه‌سازی برای کسب‌وکارها. این مدل می‌تواند درآمد B2B مستقل از اشتراک چت ایجاد کند.</p></article>
+  <article class="card"><div class="modelname">مدیریت کانال و صفحات</div><p class="note">پلن ماهانه برای برنامه‌ریزی، تولید، آماده‌سازی و انتشار محتوا و گزارش عملکرد؛ دسترسی‌ها و تأیید انتشار باید دست خود مشتری بماند.</p></article>
+  <article class="card"><div class="modelname">فروش خروجی و گزارش تخصصی</div><p class="note">گزارش‌های قابل دانلود، تحلیل‌های عمیق، پرونده پروژه و محتوای اختصاصی. در ربات‌های سرگرمی و تفسیری، شفافیت درباره ماهیت غیرقطعی تحلیل‌ها ضروری است.</p></article>
+  <article class="card"><div class="modelname">White-label و API</div><p class="note">ارائه نسخه اختصاصی ربات به سایت‌ها، کانال‌ها و کسب‌وکارها با برند خودشان؛ دریافت هزینه راه‌اندازی، اشتراک و مصرف API.</p></article>
+ </div>
+ <div class="result" style="margin-top:14px"><span>قاعده سودآوری</span><b style="font-size:14px;direction:rtl;text-align:right;color:#f5d3ae">سود ناخالص هر ربات = درآمد − مدل‌ها − رسانه − زیرساخت − پردازش − هزینه انتشار</b><p class="note">برای هر Job شناسه یکتا بساز و هزینه واقعی آن را ثبت کن؛ در غیر این صورت نمی‌توانی بفهمی کدام ربات یا قابلیت واقعاً سودآور است.</p></div>
+</section>
+
+
+
+<section class="section" id="noVpsArchitecture" style="border-color:#4c7890">
+ <div class="sectionhead"><h3>معماری اجرایی بدون VPS</h3><span class="badge best">مبنای تصمیم‌گیری مشاور</span></div>
+ <p class="note">این پروژه نباید با فرض داشتن VPS طراحی شود. برای شروع، ورودی وب/تلگرام را به Cloudflare Worker بده؛ Worker درخواست را اعتبارسنجی و Job را در Queue قرار دهد؛ مصرف‌کننده Queue فقط یک مرحله کوتاه را اجرا کند؛ وضعیت و شناسه‌ها در MariaDB موجود از طریق یک API امن PHP یا در صورت انتخاب، D1 ثبت شوند؛ فایل نهایی در R2 یا فضای ذخیره‌سازی موجود قرار گیرد. برای کارهای طولانی از حلقه sleep و اجرای پیوسته استفاده نکن؛ وضعیت Veo را با فراخوانی‌های زمان‌بندی‌شده بررسی کن.</p>
+ <div class="cards">
+  <article class="card"><div class="modelname">ورودی و API</div><p class="note">Cloudflare Worker برای Webhook، اعتبارسنجی، محدودسازی نرخ، صف‌بندی و پروکسی امن AvalAI.</p><div class="meta"><span class="tag">بدون VPS</span><span class="tag">Secrets</span><span class="tag">HTTPS</span></div></article>
+  <article class="card"><div class="modelname">صف و وضعیت</div><p class="note">Cloudflare Queues برای Jobهای غیرهم‌زمان؛ MariaDB فعلی از طریق API امن PHP برای ثبت دائمی یا D1 در صورت ترجیح معماری Cloudflare.</p><div class="meta"><span class="tag">Retry کنترل‌شده</span><span class="tag">Idempotency</span></div></article>
+  <article class="card"><div class="modelname">رسانه و خروجی</div><p class="note">Cloudflare R2 برای نگهداری فایل‌های نهایی، مشروط به فعال‌سازی و بررسی هزینه/سهمیه. Worker جایگزین FFmpeg نیست؛ برای مونتاژ MP4 به Python hosting دارای FFmpeg یا سرویس رندر مستقل نیاز است.</p><div class="meta"><span class="tag">R2</span><span class="tag">No FFmpeg in Worker</span></div></article>
+  <article class="card"><div class="modelname">محدودیت صادقانه MVP</div><p class="note">تا وقتی محیطی با FFmpeg تأیید نشده، خروجی MVP را به‌صورت کلیپ‌های مجزا + لینک دانلود تحویل بده؛ ادعای ساخت خودکار یک MP4 شصت‌ثانیه‌ای نکن.</p><div class="meta"><span class="tag">بدون هزینه پنهان</span><span class="tag">قابل ارتقا</span></div></article>
+ </div>
+</section>
+
+<section class="section" id="advisorPanel">
+ <div class="sectionhead"><h3>مشاور فنی هوشمند AvalAI</h3><span class="badge best">مشاور معماری، مدل، ابزار و هزینه</span></div>
+ <p class="note">مشاور از دانش پایه نسخه‌بندی‌شده در docs/KNOWLEDGE_BASE.md، بازیابی بخش‌های مرتبط، کاتالوگ زنده مدل‌ها و اطلاعات حساب AvalAI استفاده می‌کند. می‌تواند برای هر ربات، معماری، مدل اصلی و جایگزین، حافظه، ابزار، پردازش رسانه، کانال انتشار، ریسک‌ها و هزینه را پیشنهاد کند. پاسخ‌ها باید بین «اطلاعات مستند»، «تخمین» و «نیازمند آزمایش» تفکیک شوند.</p>
+ <div class="calcgrid">
+  <div class="field"><label>کلید API آوال‌ای‌آی</label><input id="avalaiKey" type="password" autocomplete="off" placeholder="کلید API را وارد کن"></div>
+  <div class="field"><label>مدل مشاور (از کاتالوگ زنده)</label><select id="advisorModel"><option value="deepseek-v3.2">deepseek-v3.2 · انتخاب اولیه</option></select></div>
+  <div class="field"><label>حداکثر توکن خروجی (قابل تنظیم)</label><input id="advisorMax" type="number" min="512" max="16000" step="512" value="5000" style="width:100%;background:#0d1527;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px"><div class="smallstat">پیش‌فرض ۵۰۰۰ · بازه ۵۱۲ تا ۱۶۰۰۰ · سقف واقعی مدل انتخابی اعمال می‌شود.</div></div>
+  <div class="field"><label>عمق مشاوره</label><select id="advisorDepth"><option value="focused">متمرکز · یک مسئله</option><option value="detailed" selected>تفصیلی · تحلیل فنی و اجرایی</option><option value="architecture">معماری عمیق · مقایسه و طراحی مرحله‌ای</option></select></div>
+ </div>
+ <div style="display:flex;gap:9px;flex-wrap:wrap;margin:8px 0 14px">
+  <button class="btn primary" id="connectAvalai">اتصال و بررسی موجودی</button>
+  <button class="btn" id="refreshCredit">به‌روزرسانی موجودی</button>
+  <button class="btn" id="forgetKey">پاک کردن کلید از صفحه</button>
+  <span class="note" id="keyStatus">کلید فقط در حافظه همین صفحه نگهداری می‌شود و در localStorage ذخیره نمی‌شود.</span>
+ </div>
+ <div class="calcgrid">
+  <div class="result"><span>اعتبار باقی‌مانده (ریال)</span><b id="creditIrt">—</b></div>
+  <div class="result"><span>اعتبار باقی‌مانده (واحد USD)</span><b id="creditUsd">—</b></div>
+  <div class="result"><span>Tier حساب</span><b id="creditTier">—</b></div>
+ </div>
+ <div class="field" style="margin-top:15px"><label>نیاز یا مسئله‌ای که می‌خواهی بررسی شود</label><textarea id="advisorQuestion" rows="5" style="width:100%;background:#0d1527;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px" placeholder="مثلاً: برای رباتی که از ویدئوهای آموزشی مجاز، زیرنویس فارسی، خلاصه و ریلز تولید می‌کند، کم‌هزینه‌ترین معماری قابل اتکا را پیشنهاد بده."></textarea></div>
+ <div style="display:flex;gap:9px;flex-wrap:wrap;align-items:center">
+  <button class="btn primary" id="askAdvisor">دریافت مشاوره</button>
+  <span class="note" id="advisorState">برای شروع، کلید API را وارد و اتصال را بررسی کن.</span>
+ </div>
+ <div class="calcgrid">
+  <div class="result"><span>هزینه تخمینی همین مشاوره (USD)</span><b id="consultCostUsd">—</b></div>
+  <div class="result"><span>هزینه تخمینی همین مشاوره (ریال)</span><b id="consultCostIrt">—</b></div>
+  <div class="result"><span>توکن مصرف‌شده (ورودی / خروجی)</span><b id="consultTokens">—</b></div>
+ </div>
+ <div id="advisorAnswer" class="result" style="margin-top:14px;min-height:80px;white-space:pre-wrap;direction:rtl;text-align:right">پاسخ مشاور اینجا نمایش داده می‌شود.</div>
+ <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:9px">
+  <button class="btn" id="copyAdvisorAnswer" type="button">کپی کامل پاسخ</button>
+  <span class="note" id="copyAdvisorState">پاسخ را با یک کلیک کپی کن.</span>
+ </div>
+ <p class="note">کنترل هزینه: مدل پیش‌فرض اقتصادی، پاسخ محدود، ارسال خلاصه فشرده به‌جای کل سند، عدم استفاده از ابزارهای جانبی در هر پرسش و درخواست ساختارمند. قیمت تخمینی از usage و قیمت کاتالوگ محاسبه می‌شود؛ رقم دقیق نهایی را از تراکنش AvalAI باید تطبیق داد. کلید در این نسخه فقط در حافظه مرورگر است و در فایل/LocalStorage ذخیره نمی‌شود؛ برای سرویس عمومی چندکاربره، کلید را به Cloudflare Worker منتقل کن و هرگز آن را در GitHub یا Frontend عمومی قرار نده.</p>
+</section>
+
+<section class="section" id="githubFinder">
+ <div class="sectionhead"><h3>یافتن کدهای آماده GitHub بر اساس نیاز</h3><span class="muted">جست‌وجوی پروژه‌ها و انتخاب برای بررسی سلامت</span></div>
+ <p class="note">این بخش جست‌وجوی مخازن عمومی را با GitHub REST API انجام می‌دهد. جست‌وجوی متن داخل کد در API عمومی GitHub به احراز هویت نیاز دارد؛ بنابراین این ابزار ابتدا Repositoryهای مرتبط را پیدا می‌کند و برای جست‌وجوی دقیق کد، لینک جست‌وجوی رسمی GitHub را باز می‌کند.</p>
+ <div class="field"><label>چه قابلیتی می‌خواهی آماده پیدا کنی؟</label><textarea id="githubNeed" rows="3" style="width:100%;background:#0d1527;color:var(--text);border:1px solid var(--line);border-radius:10px;padding:12px" placeholder="ترجیحاً انگلیسی: Python library to transcribe YouTube videos, translate subtitles, generate clips with FFmpeg"></textarea></div>
+ <div class="calcgrid">
+  <div class="field"><label>زبان ترجیحی</label><select id="githubLanguage"><option value="">همه زبان‌ها</option><option>Python</option><option>JavaScript</option><option>TypeScript</option><option>PHP</option><option>Go</option><option>Rust</option></select></div>
+  <div class="field"><label>حداقل ستاره</label><select id="githubStars"><option value="0">بدون محدودیت</option><option value="10">۱۰+</option><option value="50" selected>۵۰+</option><option value="200">۲۰۰+</option><option value="1000">۱۰۰۰+</option></select></div>
+  <div class="field"><label>مرتب‌سازی</label><select id="githubSort"><option value="best-match">ارتباط با نیاز</option><option value="stars">بیشترین ستاره</option><option value="updated">آخرین به‌روزرسانی</option></select></div>
+ </div>
+ <button class="btn primary" id="searchGithub">جست‌وجوی مخازن مرتبط</button>
+ <a class="mini" id="githubCodeSearch" href="https://github.com/search?type=code" target="_blank" rel="noopener">جست‌وجوی مستقیم داخل کد GitHub</a>
+ <div id="githubResults" style="margin-top:15px"><div class="empty">نیاز را بنویس و جست‌وجو را اجرا کن.</div></div>
+</section>
+
+<section class="section">
+ <div class="sectionhead"><h3>محاسبه‌گر هزینه مصرف متن</h3><span class="muted">برآورد ساده بر اساس قیمت ثبت‌شده مدل</span></div>
+ <div class="calcgrid">
+  <div class="field"><label>مدل</label><select id="calcModel"><option value="">ابتدا مدل‌ها را دریافت کنید</option></select></div>
+  <div class="field"><label>توکن ورودی در هر درخواست</label><input id="inTokens" type="number" value="10000" min="0"></div>
+  <div class="field"><label>توکن خروجی در هر درخواست</label><input id="outTokens" type="number" value="2000" min="0"></div>
+  <div class="field"><label>تعداد درخواست در ماه</label><input id="requests" type="number" value="10000" min="0"></div>
+  <div class="result"><span>هزینه هر درخواست</span><b id="perRequest">$—</b></div>
+  <div class="result"><span>هزینه ماهانه</span><b id="monthly">$—</b></div>
+ </div>
+ <p class="note">محاسبه‌گر فعلاً ورودی عادی و خروجی را حساب می‌کند؛ ورودی کش‌شده، هزینه رسانه، ابزار میزبانی‌شده، مالیات، نرخ تبدیل و هزینه‌های جانبی در آن لحاظ نشده‌اند. قیمت‌های غیرتوکنی در این محاسبه‌گر نمایش داده نمی‌شوند.</p>
+</section>
+<div class="footer">Technology Intelligence Studio · نسخه ۵.۰ · مشاور هوشمند، اعتبارسنجی AvalAI و جست‌وجوی GitHub · منبع کاتالوگ: AvalAI Public Models API</div>
+</div>
+<div class="modal" id="modal"><div class="dialog"><div class="dialoghead"><h3 id="modalTitle">جزئیات مدل</h3><button class="close" id="closeModal">×</button></div><div id="modalBody"></div></div></div>
+<script>
+const API='https://api.avalai.ir/public/models';
+let models=[],activeCat='all',lastSource='—';
+const $=id=>document.getElementById(id);
+const fmt=(n,d=4)=>Number.isFinite(Number(n))?Number(n).toLocaleString('en-US',{maximumFractionDigits:d}):'—';
+const money=n=>Number.isFinite(Number(n))?'$'+fmt(n,6):'—';
+const price=m=>m.pricing||{};
+const caps=m=>m.capabilities||m;
+const has=(m,k)=>Boolean(caps(m)[k] ?? m[k]);
+const mode=m=>(m.mode||m.type||'').toLowerCase();
+function categories(m){
+ const c=[];const md=mode(m),id=(m.id||'').toLowerCase();
+ if(['embedding','embeddings'].includes(md)||id.includes('embed'))c.push('embedding');
+ if(['image','image_generation','image-generation'].includes(md)||/image|flux|imagen|seedream|nano-banana/.test(id))c.push('imagegen');
+ if(['audio','speech','transcription','tts','stt'].includes(md)||has(m,'supports_audio_input')||has(m,'supports_audio_output')||/whisper|tts|speech|audio|eleven/.test(id))c.push('audio');
+ if(['video'].includes(md)||has(m,'supports_video_input')||/veo|sora|runway|kling/.test(id))c.push('video');
+ if(has(m,'supports_vision')||has(m,'supports_image_input')||['vision'].includes(md))c.push('vision');
+ if(md==='chat'||md==='completion'||md==='responses'||has(m,'supports_function_calling')||has(m,'supports_reasoning'))c.push('text');
+ if(has(m,'supports_function_calling')||has(m,'supports_tool_choice')||has(m,'supports_reasoning')||has(m,'supports_computer_use'))c.push('agent');
+ return [...new Set(c)];
+}
+const catNames={all:'همه',text:'مدل متن',agent:'ایجنت و ابزار',vision:'بینایی',audio:'صوت',video:'ویدئو',imagegen:'تولید تصویر',embedding:'Embedding'};
+function recommendation(m,cat){
+ let score=0,why=[];
+ const p=price(m),input=Number(p.input),output=Number(p.output);
+ if(cat==='agent'){if(has(m,'supports_function_calling')){score+=45;why.push('فراخوانی ابزار')}if(has(m,'supports_reasoning')){score+=25;why.push('استدلال')}if(has(m,'supports_tool_choice'))score+=10;if(has(m,'supports_prompt_caching'))score+=5}
+ else if(cat==='vision'){if(has(m,'supports_vision')||has(m,'supports_image_input')){score+=55;why.push('ورودی تصویر')}if(has(m,'supports_reasoning'))score+=15}
+ else if(cat==='audio'){if(has(m,'supports_audio_input')){score+=40;why.push('ورودی صوت')}if(has(m,'supports_audio_output')){score+=40;why.push('خروجی صوت')}if(/transcription|tts|speech/.test(mode(m)))score+=15}
+ else if(cat==='video'){if(has(m,'supports_video_input')){score+=55;why.push('ورودی ویدئو')}if(mode(m)==='video')score+=30}
+ else if(cat==='imagegen'){score+=mode(m).includes('image')?70:30;why.push('مدل رسانه‌ای')}
+ else if(cat==='embedding'){score+=mode(m)==='embedding'?75:45;why.push('بردارسازی')}
+ else {if(has(m,'supports_reasoning')){score+=15;why.push('استدلال')}if(has(m,'supports_vision'))score+=8;if(has(m,'supports_function_calling'))score+=8}
+ if(Number.isFinite(input)&&input>=0){score+=Math.max(0,Math.min(25,25/(1+input)));if(input<=.2)why.push('ورودی اقتصادی')}
+ if(Number.isFinite(output)&&output>=0&&output<=1)score+=8;
+ if(has(m,'supports_prompt_caching'))score+=3;
+ return {score:Math.round(score),why:[...new Set(why)]};
+}
+function classifyBadge(m){const cs=categories(m);return cs.map(x=>catNames[x]).slice(0,3)}
+function render(){
+ const q=$('search').value.trim().toLowerCase(),provider=$('provider').value,max=$('maxPrice').value===''?Infinity:Number($('maxPrice').value),ctx=Number($('context').value);
+ const required=[...document.querySelectorAll('.checks input:checked')].map(x=>x.value);
+ let arr=models.filter(m=>{
+  const text=((m.id||'')+' '+(m.owned_by||'')).toLowerCase(),p=price(m),input=Number(p.input);
+  return (!q||text.includes(q))&&(!provider||m.owned_by===provider)&&(!Number.isFinite(max)||max===Infinity||(Number.isFinite(input)&&input<=max))&&(!ctx||(Number(m.max_tokens||m.max_input_tokens||0)>=ctx))&&required.every(k=>has(m,k))&&(activeCat==='all'||categories(m).includes(activeCat));
+ });
+ const rankCat=activeCat==='all'?'text':activeCat;
+ const sort=$('sortBy')?.value||'recommended';
+ const num=(v)=>v==null||!Number.isFinite(Number(v))?Infinity:Number(v);
+ const sampleIn=10000, sampleOut=2000;
+ arr.sort((a,b)=>{
+  if(sort==='name')return String(a.id||'').localeCompare(String(b.id||''),'en',{sensitivity:'base'});
+  if(sort==='input'){const x=num(price(a).input),y=num(price(b).input);return x===y?0:(x===Infinity?1:y===Infinity?-1:x-y)}
+  if(sort==='output'){const x=num(price(a).output),y=num(price(b).output);return x===y?0:(x===Infinity?1:y===Infinity?-1:x-y)}
+  if(sort==='total'){
+   const ca=sampleIn*num(price(a).input)/1e6+sampleOut*num(price(a).output)/1e6;
+   const cb=sampleIn*num(price(b).input)/1e6+sampleOut*num(price(b).output)/1e6;
+   return (Number.isFinite(ca)?ca:Infinity)===(Number.isFinite(cb)?cb:Infinity)?0:((Number.isFinite(ca)?ca:Infinity)==Infinity?1:(Number.isFinite(cb)?cb:Infinity)==Infinity?-1:ca-cb);
+  }
+  return recommendation(b,rankCat).score-recommendation(a,rankCat).score;
+ });
+ $('shownCount').textContent=`${arr.length.toLocaleString('fa-IR')} مدل از ${models.length.toLocaleString('fa-IR')} مدل`;
+ $('cards').innerHTML=arr.length?arr.map(m=>card(m,rankCat)).join(''):'<div class="empty">مدلی با این فیلترها پیدا نشد.</div>';
+}
+function card(m,cat){
+ const p=price(m),r=recommendation(m,cat),ctx=m.max_input_tokens||m.max_tokens;
+ const priceBits=[['ورودی',p.input],['ورودی کش‌شده',p.cached_input],['خروجی',p.output]];
+ const tags=classifyBadge(m).map(x=>`<span class="tag">${x}</span>`).join('')+
+ ['supports_reasoning','supports_vision','supports_function_calling','supports_web_search','supports_audio_input','supports_video_input','supports_prompt_caching'].filter(k=>has(m,k)).slice(0,4).map(k=>`<span class="tag">${({supports_reasoning:'استدلال',supports_vision:'بینایی',supports_function_calling:'ابزار',supports_web_search:'وب',supports_audio_input:'صوت',supports_video_input:'ویدئو',supports_prompt_caching:'کش'})[k]}</span>`).join('');
+ return `<article class="card"><div class="cardtop"><div><div class="modelname">${esc(m.id||'بدون شناسه')}</div><div class="provider">${esc(m.owned_by||'provider نامشخص')} · ${esc(mode(m)||'نوع نامشخص')}</div></div><span class="badge ${r.score>=55?'best':''}">${r.score>=55?'گزینه مناسب':'امتیاز قابلیت'} · ${r.score}/100</span></div>
+ <div class="prices">${priceBits.map(([l,v])=>`<div class="price"><span>${l} / ۱M</span><b>${v==null?'—':money(v)}</b></div>`).join('')}</div>
+ <div class="meta">${tags||'<span class="tag">قابلیت‌ها کامل گزارش نشده</span>'}</div>
+ <div class="cardfoot"><small>Context: ${ctx?fmt(ctx,0)+' tokens':'نامشخص'}<br>${r.why.join(' · ')||'نیازمند بررسی قابلیت‌ها'}</small><div class="card-actions"><button class="mini" onclick="showDetails('${encodeURIComponent(m.id)}')">جزئیات</button><button class="mini" onclick="selectCalc('${encodeURIComponent(m.id)}')">محاسبه هزینه</button></div></div></article>`;
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function showDetails(encoded){
+ const id=decodeURIComponent(encoded),m=models.find(x=>x.id===id);if(!m)return;
+ $('modalTitle').textContent=m.id;
+ const rows=[['شناسه',m.id],['ارائه‌دهنده',m.owned_by],['نوع',m.mode],['حداقل Tier',m.min_tier],['حداکثر توکن',m.max_tokens],['ورودی مجاز',m.max_input_tokens],['خروجی مجاز',m.max_output_tokens],['قیمت',JSON.stringify(m.pricing||{})],['قابلیت‌ها',Object.entries(m).filter(([k,v])=>k.startsWith('supports_')&&v===true).map(([k])=>k.replace('supports_','')).join('، ')||'گزارش نشده']];
+ $('modalBody').innerHTML='<div class="detailgrid">'+rows.map(([a,b])=>`<div class="detail"><span>${esc(a)}</span>${esc(b??'—')}</div>`).join('')+'</div><p class="note">این اطلاعات مستقیماً از پاسخ API عمومی AvalAI خوانده شده است. خالی بودن یک قابلیت به معنی پشتیبانی قطعی یا عدم پشتیبانی نیست؛ ممکن است در کاتالوگ گزارش نشده باشد.</p>';
+ $('modal').classList.add('show');
+}
+function selectCalc(encoded){const id=decodeURIComponent(encoded);$('calcModel').value=id;calc();$('calcModel').scrollIntoView({behavior:'smooth',block:'center'});}
+function calc(){
+ const m=models.find(x=>x.id===$('calcModel').value);if(!m){$('perRequest').textContent='$—';$('monthly').textContent='$—';return}
+ const i=Math.max(0,Number($('inTokens').value)||0),o=Math.max(0,Number($('outTokens').value)||0),n=Math.max(0,Number($('requests').value)||0),p=price(m);
+ if(p.input==null||p.output==null){$('perRequest').textContent='غیرتوکنی';$('monthly').textContent='—';return}
+ const per=i*Number(p.input)/1e6+o*Number(p.output)/1e6;
+ $('perRequest').textContent=money(per);$('monthly').textContent=money(per*n);
+}
+function populate(){
+ const providers=[...new Set(models.map(m=>m.owned_by).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'}));
+ $('provider').innerHTML='<option value="">همه ارائه‌دهنده‌ها</option>'+providers.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');
+ const old=$('calcModel').value;
+ $('calcModel').innerHTML='<option value="">انتخاب مدل</option>'+models.filter(m=>m.pricing?.input!=null&&m.pricing?.output!=null).slice().sort((a,b)=>String(a.id||'').localeCompare(String(b.id||''),'en',{sensitivity:'base'})).map(m=>`<option value="${esc(m.id)}">${esc(m.id)} · ${esc(m.owned_by||'')}</option>`).join('');
+ if(models.some(m=>m.id===old))$('calcModel').value=old;
+ $('totalCount').textContent=models.length.toLocaleString('fa-IR');$('providerCount').textContent=providers.length.toLocaleString('fa-IR');
+ $('cheapCount').textContent=models.filter(m=>Number(m.pricing?.input)<1).length.toLocaleString('fa-IR');
+ $('lastUpdated').textContent=new Date().toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});
+ render();calc();
+}
+function setStatus(text,ok=true){$('statusText').textContent=text;$('statusDot').style.background=ok?'var(--green)':'var(--red)';}
+async function loadLive(){
+ setStatus('در حال دریافت کاتالوگ...');
+ $('refreshBtn').disabled=true;
+ try{
+  const r=await fetch(API,{cache:'no-store'});if(!r.ok)throw new Error('HTTP '+r.status);
+  const data=await r.json();if(!Array.isArray(data.data))throw new Error('ساختار پاسخ قابل تشخیص نیست');
+  models=data.data;localStorage.setItem('techstudio_avalai_models',JSON.stringify(models));localStorage.setItem('techstudio_avalai_time',new Date().toISOString());
+  lastSource='live';setStatus('اتصال زنده برقرار است');populate();
+ }catch(e){
+  const saved=localStorage.getItem('techstudio_avalai_models');
+  if(saved){try{models=JSON.parse(saved);lastSource='cache';populate();setStatus('نمایش آخرین نسخه ذخیره‌شده · دریافت زنده ناموفق',false)}catch(_){setStatus('خطا در دریافت مدل‌ها: '+e.message,false)}}
+  else setStatus('دریافت ناموفق؛ فایل models.json را وارد کنید',false);
+ }finally{$('refreshBtn').disabled=false}
+}
+
+function parseGitHubRepo(raw){
+ const v=raw.trim().replace(/\.git$/,'');
+ const m=v.match(/(?:https?:\/\/)?(?:www\.)?github\.com\/([^\/\s]+)\/([^\/\s?#]+)/i);
+ if(!m)throw new Error('لینک باید به شکل github.com/owner/repository باشد.');
+ return {owner:m[1],repo:m[2]};
+}
+function ago(date){
+ if(!date)return 'نامشخص';
+ const days=Math.floor((Date.now()-new Date(date).getTime())/86400000);
+ if(days<1)return 'امروز';if(days<30)return `${days} روز پیش`;if(days<365)return `${Math.floor(days/30)} ماه پیش`;return `${(days/365).toFixed(1)} سال پیش`;
+}
+async function checkRepo(){
+ const btn=$('checkRepoBtn'),box=$('repoResults');
+ let owner,repo;
+ try{({owner,repo}=parseGitHubRepo($('repoUrl').value))}catch(e){box.innerHTML=`<div class="empty">${esc(e.message)}</div>`;return}
+ btn.disabled=true;btn.textContent='در حال بررسی...';box.innerHTML='<div class="empty">در حال دریافت اطلاعات GitHub و OpenSSF Scorecard...</div>';
+ try{
+  const headers={'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+  const [repoRes,releaseRes,scoreRes]=await Promise.all([
+   fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`,{headers}),
+   fetch(`https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/releases/latest`,{headers}),
+   fetch(`https://api.securityscorecards.dev/projects/github.com/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}`,{headers:{'Accept':'application/json'}})
+  ]);
+  if(!repoRes.ok)throw new Error(repoRes.status===404?'مخزن پیدا نشد یا عمومی نیست.':`GitHub API: HTTP ${repoRes.status}`);
+  const r=await repoRes.json();
+  const release=releaseRes.ok?await releaseRes.json():null;
+  const sc=scoreRes.ok?await scoreRes.json():null;
+  const license=r.license?.spdx_id||'نامشخص / نیازمند بررسی';
+  const archived=r.archived, pushed=ago(r.pushed_at),created=ago(r.created_at);
+  const flags=[
+   [archived?'ریسک بالا':'آرشیو نشده',archived],
+   [r.license?.spdx_id?'مجوز ثبت شده':'مجوز نامشخص',!r.license?.spdx_id],
+   [r.pushed_at&&((Date.now()-new Date(r.pushed_at).getTime())>365*86400000)?'فعالیت بیش از یک سال قبل':`آخرین Push: ${pushed}`,r.pushed_at&&((Date.now()-new Date(r.pushed_at).getTime())>365*86400000)],
+   [release?`آخرین Release: ${release.tag_name}`:'Release قابل تشخیص نیست',!release]
+  ];
+  const score=sc?.score;
+  const checks=(sc?.checks||[]).slice().sort((a,b)=>(a.score??-1)-(b.score??-1));
+  const checkHtml=checks.length?`<div class="detailgrid">${checks.map(c=>`<div class="detail"><span>${esc(c.name)} · ${esc(c.risk||'')}</span><b>${c.score<0?'نامشخص':c.score+'/10'}</b><br>${esc(c.reason||'')}</div>`).join('')}</div>`:'<div class="note">نتیجه Scorecard در API عمومی پیدا نشد. این به معنی بد بودن مخزن نیست؛ برای ارزیابی کامل‌تر CLI یا GitHub Action لازم است.</div>';
+  const viewer=`https://scorecard.dev/viewer/?uri=github.com/${owner}/${repo}`;
+  box.innerHTML=`<div class="result"><div class="sectionhead"><div><span>مخزن بررسی‌شده</span><b style="display:block;font-size:18px;color:var(--accent2);direction:ltr;text-align:right">${esc(r.full_name)}</b></div><span class="badge">${archived?'آرشیو شده':'مخزن فعال'}</span></div>
+  <div class="calcgrid">
+   <div class="result"><span>ستاره‌ها</span><b>${fmt(r.stargazers_count,0)}</b></div>
+   <div class="result"><span>Forkها</span><b>${fmt(r.forks_count,0)}</b></div>
+   <div class="result"><span>Issueهای باز</span><b>${fmt(r.open_issues_count,0)}</b></div>
+  </div>
+  <div class="detailgrid">
+   <div class="detail"><span>مجوز</span>${esc(license)}</div><div class="detail"><span>آخرین فعالیت</span>${esc(pushed)}</div>
+   <div class="detail"><span>ساخته شده</span>${esc(created)}</div><div class="detail"><span>زبان اصلی</span>${esc(r.language||'نامشخص')}</div>
+   <div class="detail"><span>Branch پیش‌فرض</span>${esc(r.default_branch||'—')}</div><div class="detail"><span>آخرین نسخه</span>${esc(release?.tag_name||'مشخص نیست')}</div>
+  </div>
+  <div class="meta">${flags.map(f=>`<span class="tag" style="border-color:${f[1]?'#a95b5b':'#3a806d'}">${esc(f[0])}</span>`).join('')}</div>
+  <p class="note">${esc(r.description||'بدون توضیحات')}</p>
+  <div class="cardfoot"><small>این بررسی metadata است؛ جایگزین audit کد نیست.</small><div class="card-actions"><a class="mini" href="${esc(r.html_url)}" target="_blank" rel="noopener">مخزن GitHub</a><a class="mini" href="${esc(viewer)}" target="_blank" rel="noopener">Scorecard Viewer</a></div></div></div>
+  <div class="result" style="margin-top:12px"><span>OpenSSF Scorecard · امتیاز تجمیعی</span><b>${score==null?'در دسترس نیست':Number(score).toFixed(1)+'/10'}</b><p class="note">${sc?.date?'تاریخ ارزیابی: '+esc(new Date(sc.date).toLocaleDateString('fa-IR')):'نتیجه منتشرشده‌ای برای این مخزن در API پیدا نشد.'} امتیاز تجمیعی به‌تنهایی کافی نیست؛ چک‌های جزئی زیر را هم بررسی کن.</p>${checkHtml}</div>`;
+ }catch(e){box.innerHTML=`<div class="empty">بررسی کامل نشد: ${esc(e.message)}<br><span class="note">ممکن است محدودیت نرخ GitHub API یا CORS رخ داده باشد. لینک مخزن را مستقیم در Scorecard Viewer هم باز کن.</span></div>`}
+ finally{btn.disabled=false;btn.textContent='بررسی سلامت مخزن'}
+}
+$('checkRepoBtn').addEventListener('click',checkRepo);
+$('repoUrl').addEventListener('keydown',e=>{if(e.key==='Enter')checkRepo()});
+
+$('refreshBtn').addEventListener('click',loadLive);
+$('importBtn').addEventListener('click',()=>$('fileInput').click());
+$('fileInput').addEventListener('change',async e=>{
+ const f=e.target.files[0];if(!f)return;
+ try{const data=JSON.parse(await f.text());models=Array.isArray(data)?data:data.data;if(!Array.isArray(models))throw new Error('فایل باید آرایه مدل‌ها یا شیء دارای data باشد');localStorage.setItem('techstudio_avalai_models',JSON.stringify(models));setStatus('فایل JSON بارگذاری شد');populate()}catch(err){setStatus('فایل نامعتبر: '+err.message,false)}e.target.value='';
+});
+$('search').addEventListener('input',render);['provider','maxPrice','context'].forEach(id=>$(id).addEventListener('change',render));document.querySelectorAll('.checks input').forEach(x=>x.addEventListener('change',render));
+$('tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-cat]');if(!b)return;activeCat=b.dataset.cat;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));render()});
+$('clearBtn').addEventListener('click',()=>{$('search').value='';$('provider').value='';$('maxPrice').value='';$('context').value='0';document.querySelectorAll('.checks input').forEach(x=>x.checked=false);render()});
+['calcModel','inTokens','outTokens','requests'].forEach(id=>$(id).addEventListener('input',calc));
+$('sortBy').addEventListener('change',render);
+$('closeModal').onclick=()=>$('modal').classList.remove('show');$('modal').addEventListener('click',e=>{if(e.target===$('modal'))$('modal').classList.remove('show')});
+window.showDetails=showDetails;window.selectCalc=selectCalc;
+const cached=localStorage.getItem('techstudio_avalai_models');if(cached){try{models=JSON.parse(cached);populate();setStatus('نسخه ذخیره‌شده بارگذاری شد')}catch(e){}}
+loadLive();
+loadKnowledgeBase();
+
+// ==========================================================
+// Advisor + AvalAI account monitoring + GitHub repository finder
+// ==========================================================
+let advisorKey = '';
+let lastCredit = null;
+let lastConsultation = null;
+const TECH_KNOWLEDGE = `
+تو مشاور ارشد معماری نرم‌افزار، هوش مصنوعی و محصول هستی. پاسخ کلی و توصیه مبهم ممنوع است.
+واقعیت‌های ثابت پروژه:
+- برند/سرویس مستقل است؛ نام AiDoost را به‌عنوان برند یا محصول فرض نکن.
+- کاربر VPS ندارد. هیچ راهکار پایه‌ای را وابسته به VPS، سرور دائمی یا Docker روی VPS طراحی نکن.
+- امکانات شناخته‌شده: هاست اشتراکی با PHP 8.2 و MariaDB، احتمالاً Redis، Cloudflare Workers، GitHub، Telegram و احتمالاً Python hosting. در مورد دسترسی، پلن، Queue، R2، FFmpeg یا محدودیت Python hosting فرض نکن؛ آن‌ها را «نیازمند تأیید» علامت بزن.
+- هاست اشتراکی را برای پردازش سنگین ویدئو، FFmpeg، OCR، Whisper، Playwright یا worker دائمی مناسب فرض نکن.
+- معماری پایه ترجیحی بدون VPS: Cloudflare Worker برای webhook/API/proxy، Cloudflare Queues برای jobهای async (در صورت فعال بودن در حساب)، Cron Triggers برای pollهای کوتاه، MariaDB فعلی از طریق API امن PHP یا D1 برای metadata، و R2 برای فایل‌ها در صورت فعال بودن. هر جزء Cloudflare باید با پلن/سهمیه واقعی کاربر تطبیق داده شود.
+- Worker محیط اجرای FFmpeg یا پردازش CPU سنگین نیست. برای مونتاژ MP4 باید Python hosting دارای FFmpeg تأیید شود؛ در غیر این صورت MVP کلیپ‌های جداگانه تحویل دهد یا سرویس رندر خارجی با هزینه شفاف اضافه شود.
+- از n8n و اتوماسیون پولی به‌عنوان پیش‌فرض استفاده نکن. Orchestrator اختصاصی مبتنی بر Queue/DB، state machine، retry محدود، dead-letter و idempotency را ترجیح بده.
+- معماری محصولات در صورت نیاز: Domain/Specialist Engine، Content Engine، Channel Adapters، Analytics & Revenue. همه اجزا را برای هر محصول تحمیل نکن؛ MVP کم‌جزء بساز.
+- MariaDB منبع حقیقت داده‌های کاربر و job باشد؛ Redis فقط در صورت دسترسی برای cache/lock/queue. Vector DB فقط با نیاز واقعی RAG.
+قواعد AvalAI:
+- Base URL عمومی: https://api.avalai.ir/v1 و احراز هویت Bearer API key.
+- برای کار جدید Responses API را در اولویت بررسی قرار بده، اما فقط وقتی مدل/route انتخابی آن را پشتیبانی کند. Chat Completions همچنان برای سازگاری گسترده قابل استفاده است. ساختار و پارامترهای یک endpoint را به endpoint دیگر تعمیم نده.
+- کاتالوگ مدل و قیمت را از API/صفحه رسمی و داده زمان اجرا بخوان؛ قیمت‌های قدیمی یا حدسی را قطعی اعلام نکن. نبودن قیمت در کاتالوگ به معنی رایگان بودن نیست.
+- API حساب در https://api.avalai.ir/user/v1 است؛ GET /credit برای موجودی و tier؛ GET /transactions برای تاریخچه؛ POST /transactions/lookup برای هزینه دقیق با transaction/request ID. سوابق تراکنش حداقل ۹۰ روز قابل دسترس‌اند؛ هزینه‌های لازم برای سودآوری را در DB خود پروژه ذخیره کن.
+- برای ویدئو: POST /v1/videos ایجاد async؛ GET /v1/videos/{video_id} وضعیت؛ GET /v1/videos/{video_id}/content دانلود؛ GET /v1/videos/ برای فهرست. پس از قطع ارتباط، درخواست تولید جدید نفرست؛ اول فهرست/وضعیت همان درخواست را بازیابی کن تا هزینه تکراری ایجاد نشود.
+- مدل‌های پایدار Veo 3.1: veo-3.1-fast-generate-001 با نرخ مستند ۰٫۱۵ دلار/ثانیه و veo-3.1-generate-001 با نرخ مستند ۰٫۴۰ دلار/ثانیه. هر درخواست ۴، ۶ یا ۸ ثانیه؛ حداکثر ۸ ثانیه در هر تولید؛ 720p و 1080p فقط 16:9 طبق مستند جاری، نسبت 9:16 نیز در 720p. قبل از ارسال، محدودیت مدل/اندازه/نسبت/پارامتر را دوباره با مستندات و حساب تطبیق بده.
+- Veo 3.1 صدای native دارد؛ TTS جداگانه را پیش‌فرض و اجباری فرض نکن. اگر نریشن فارسی دقیق، صدای ثابت یا کنترل کامل گفتار لازم است، مسیر TTS جداگانه را با هزینه/هم‌زمان‌سازی بررسی کن.
+- Veo برای ۶۰ ثانیه خروجی نهایی یک درخواست ۶۰ ثانیه‌ای نمی‌پذیرد؛ باید چند کلیپ ۴/۶/۸ ثانیه‌ای تولید و بعد مونتاژ شوند. هشت کلیپ ۸ ثانیه‌ای = ۶۴ ثانیه خروجی خام؛ برآورد ویدئو با نرخ‌های مستند: Fast حدود ۹٫۶ دلار، Standard حدود ۲۵٫۶ دلار، پیش از retry، storage، رندر و سایر سرویس‌ها. برای دقیقاً ۶۰ ثانیه، حدود نظری ۹ و ۲۴ دلار است اگر ۶۰ ثانیه billable شود؛ صورتحساب دقیق را از transaction lookup بگیر.
+- هر کلیپ هزینه مستقل دارد؛ retry خودکار نامحدود ممنوع. ابتدا یک کلیپ آزمایشی، تأیید کاربر، سپس batch محدود.
+- از تصاویر مرجع فقط در صورت نیاز استفاده کن؛ قیمت image generation را ثابت/۰٫۵ دلار فرض نکن، از کاتالوگ زنده بررسی کن.
+- برای ردیابی هزینه از request_id برگشتی و safety_identifier یکتای داخلی استفاده کن؛ request_id را در جدول job ذخیره کن و بعداً با User API تسویه کن.
+- خطای 401/403، 429، 5xx، timeout و CORS را از هم تفکیک کن. برای 429 backoff با jitter و رعایت rate-limit headers؛ برای timeout در تولید ویدئو ابتدا وضعیت را query کن، نه اینکه کورکورانه دوباره create بزنی.
+قواعد پیشنهاد:
+- هر پاسخ را با «پیشنهاد اجرایی مشخص» شروع کن؛ بعد معماری/جریان داده، نام دقیق مدل و endpoint، تنظیمات، هزینه با فرمول، محدودیت، ریسک، مراحل اجرا و تست پذیرش را بده.
+- هر ادعا را یکی از این‌ها برچسب بزن: «مستند رسمی»، «استنباط مهندسی»، «نیازمند تست/تأیید». منبع و تاریخ بررسی را برای قیمت/قابلیت متغیر ذکر کن.
+- هرگز VPS، FFmpeg، Python hosting، Cloudflare Queues/R2، D1، سرویس پولی یا دسترسی API را در اختیار کاربر فرض نکن.
+- اگر داده کافی نیست، با فرض‌های روشن یک طراحی اولیه بده و فقط یک سؤال ضروری بپرس.
+- کد باید با مسیر فایل، نام متغیرهای محیطی، مدیریت خطا، امنیت، idempotency و تست پذیرش ارائه شود؛ شبه‌کد را به‌جای کد اجرایی جا نزن.
+`;
+let knowledgeBaseText = '';
+async function loadKnowledgeBase(){
+ try{
+  const r=await fetch('./docs/KNOWLEDGE_BASE.md',{cache:'no-store'});
+  if(r.ok){knowledgeBaseText=await r.text();return true;}
+ }catch(_){}
+ return false;
+}
+function retrieveKnowledge(question){
+ if(!knowledgeBaseText)return '';
+ const sections=knowledgeBaseText.split(/(?=^## )/m).filter(Boolean);
+ const qTokens=(question.toLowerCase().match(/[a-z0-9\u0600-\u06ff-]{3,}/g)||[]);
+ const ranked=sections.map((s,i)=>{
+  const low=s.toLowerCase();let score=0;
+  for(const t of qTokens){if(low.includes(t))score+=1+(t.length>5?0.5:0);}
+  if(/avalai|veo|cloudflare|بدون vps|هزینه|قیمت/i.test(question)&&/avalai|veo|cloudflare|هزینه|قیمت|بدون vps/i.test(s))score+=2;
+  return {s,i,score};
+ }).sort((a,b)=>b.score-a.score);
+ return ranked.filter(x=>x.score>0).slice(0,7).sort((a,b)=>a.i-b.i).map(x=>x.s).join('\n').slice(0,22000);
+}
+
+function compactCatalogForAdvisor(){
+ const candidates=models.filter(m=>{
+  const md=(m.mode||m.type||'').toLowerCase();
+  return m.id && (md==='chat'||md==='completion'||(!md&&!/embed|image|audio|video|tts|whisper/i.test(m.id)));
+ });
+ candidates.sort((a,b)=>{
+  const x=Number(a.pricing?.input),y=Number(b.pricing?.input);
+  if(Number.isFinite(x)&&Number.isFinite(y)&&x!==y)return x-y;
+  if(Number.isFinite(x))return -1;if(Number.isFinite(y))return 1;
+  return String(a.id).localeCompare(String(b.id));
+ });
+ const chosen=candidates.slice(0,45), selectedId=$('advisorModel')?.value;
+ const selected=candidates.find(m=>m.id===selectedId);
+ if(selected&&!chosen.some(m=>m.id===selected.id))chosen.push(selected);
+ return JSON.stringify(chosen.map(m=>{
+  const p=m.pricing||{},c=m.capabilities||m,o={id:m.id,provider:m.owned_by||m.provider||''};
+  if(p.input!=null)o.in=p.input;if(p.output!=null)o.out=p.output;
+  if(p.cached_input!=null)o.cached=p.cached_input;
+  const cap=[];if(c.supports_vision||c.supports_image_input)cap.push('vision');
+  if(c.supports_function_calling)cap.push('tools');if(c.supports_reasoning)cap.push('reasoning');
+  if(cap.length)o.cap=cap;if(m.max_output_tokens)o.max_out=m.max_output_tokens;
+  if(m.context_length||m.max_context_length)o.context=m.context_length||m.max_context_length;
+  return o;
+ }));
+}
+function keyHeaders(){return {Authorization:'Bearer '+advisorKey,'Content-Type':'application/json'};}
+function fmtIrt(n){return Number.isFinite(Number(n))?Number(n).toLocaleString('fa-IR',{maximumFractionDigits:0})+' ریال':'—';}
+function fmtUsd(n){return Number.isFinite(Number(n))?'$'+Number(n).toFixed(6):'—';}
+async function avalaiGet(url){
+ const r=await fetch(url,{headers:{Authorization:'Bearer '+advisorKey,'Content-Type':'application/json'},cache:'no-store'});
+ const data=await r.json().catch(()=>({}));
+ if(!r.ok)throw new Error(data.message||data.error||('HTTP '+r.status));
+ return data;
+}
+async function refreshCredit(){
+ if(!advisorKey)throw new Error('ابتدا کلید API را وارد کن.');
+ const d=await avalaiGet('https://api.avalai.ir/user/v1/credit');
+ lastCredit=d;
+ $('creditIrt').textContent=fmtIrt(d.remaining_irt);
+ $('creditUsd').textContent=fmtUsd(d.remaining_unit);
+ $('creditTier').textContent=d.account_tier??'—';
+ $('keyStatus').textContent='اتصال معتبر است · موجودی دریافت شد.';
+ return d;
+}
+async function connectAvalai(){
+ const k=$('avalaiKey').value.trim();
+ if(!k){$('keyStatus').textContent='کلید API را وارد کن.';return;}
+ advisorKey=k;
+ $('keyStatus').textContent='در حال بررسی کلید و دریافت موجودی...';
+ try{
+  await refreshCredit();
+  $('keyStatus').textContent='اتصال موفق؛ کلید فقط در حافظه همین صفحه است.';
+  populateAdvisorModels();
+ }catch(e){
+  advisorKey='';
+  $('keyStatus').textContent='اتصال ناموفق: '+e.message+' · اگر صفحه با file:// باز شده، احتمال محدودیت CORS وجود دارد.';
+ }
+}
+function populateAdvisorModels(){
+ const sel=$('advisorModel'), old=sel.value;
+ const candidates=models.filter(m=>{
+  const md=(m.mode||m.type||'').toLowerCase();
+  return m.id && (md==='chat'||md==='completion'||(!md&&!/embed|image|audio|video|tts|whisper/i.test(m.id)));
+ }).sort((a,b)=>{
+  const ai=Number(a.pricing?.input),bi=Number(b.pricing?.input);
+  if(Number.isFinite(ai)&&Number.isFinite(bi)&&ai!==bi)return ai-bi;
+  return String(a.id).localeCompare(String(b.id));
+ });
+ const chosen=candidates.length?candidates:models.filter(m=>m.id);
+ sel.innerHTML=chosen.map(m=>`<option value="${esc(m.id)}">${esc(m.id)} · ${esc(m.owned_by||m.provider||'')}</option>`).join('')||'<option value="deepseek-v3.2">deepseek-v3.2</option>';
+ if(chosen.some(m=>m.id===old))sel.value=old;
+ else if(chosen.some(m=>/deepseek-v3\.2/i.test(m.id)))sel.value=chosen.find(m=>/deepseek-v3\.2/i.test(m.id)).id;
+}
+function modelPrice(id){
+ const m=models.find(x=>x.id===id),p=m?.pricing||{};
+ return {input:Number(p.input),output:Number(p.output)};
+}
+async function askAdvisor(){
+ if(!advisorKey){$('advisorState').textContent='ابتدا کلید API را متصل کن.';return;}
+ const q=$('advisorQuestion').value.trim();
+ if(!q){$('advisorState').textContent='نیاز یا مسئله را بنویس.';return;}
+ const model=$('advisorModel').value||'deepseek-v3.2';
+ const requestedMax=Math.min(16000,Math.max(512,Number($('advisorMax').value)||5000));
+ const selectedModel=models.find(m=>m.id===model);
+ const modelCap=Number(selectedModel?.max_output_tokens||selectedModel?.max_tokens||0);
+ const max_tokens=modelCap>0?Math.min(requestedMax,modelCap):requestedMax;
+ const depth=$('advisorDepth')?.value||'detailed';
+ const depthRule=depth==='architecture'
+  ? 'معماری عمیق: جریان داده، مرز سرویس‌ها، قراردادهای API/DB، مقایسه گزینه‌ها، تصمیم نهایی و برنامه تست را تشریح کن.'
+  : depth==='focused'
+   ? 'تحلیل متمرکز: دقیقاً همین مسئله، یک معماری اصلی، یک جایگزین و مراحل اجرا.'
+   : 'تحلیل تفصیلی: تمام بخش‌های تشخیص، معماری، مدل، ابزار، حافظه، استقرار، هزینه، امنیت، MVP و تست را پوشش بده.';
+ const btn=$('askAdvisor');btn.disabled=true;btn.textContent='در حال مشاوره...';
+ $('advisorState').textContent=`درخواست ارسال شد؛ سقف خروجی مؤثر: ${max_tokens} توکن. لطفاً صفحه را نبند.`;
+ $('advisorAnswer').textContent='در حال تحلیل...';
+ try{
+  const retrievedKnowledge=retrieveKnowledge(q);
+  const system=`${TECH_KNOWLEDGE}
+
+بخش‌های بازیابی‌شده از docs/KNOWLEDGE_BASE.md (اگر خالی است، دانش پایه بالا ملاک است):
+${retrievedKnowledge}
+
+کاتالوگ زنده مدل‌های در دسترس (خلاصه قیمت و قابلیت):
+${compactCatalogForAdvisor()}
+
+سطح عمق انتخاب‌شده: ${depthRule}\n\nقواعد هزینه: پاسخ را کوتاه اما کامل نگه دار؛ فقط مدل‌های واقعاً مرتبط را نام ببر؛ اگر مدل/قیمت در کاتالوگ نیست، نامشخص اعلام کن. از زنجیره چندمرحله‌ای یا چندمدلی غیرضروری پرهیز کن. در ابتدای پاسخ یک جمع‌بندی اجرایی بده و سپس جدول یا بولت‌های دقیق.`;
+  const r=await fetch('https://api.avalai.ir/v1/chat/completions',{
+   method:'POST',headers:keyHeaders(),
+   body:JSON.stringify({model,messages:[{role:'system',content:system},{role:'user',content:q}],temperature:0.25,max_tokens,stream:false})
+  });
+  const data=await r.json().catch(()=>({}));
+  if(!r.ok)throw new Error(data.error?.message||data.message||('HTTP '+r.status));
+  const answer=data.choices?.[0]?.message?.content||data.output_text||'پاسخ متنی در خروجی پیدا نشد.';
+  const usage=data.usage||{};
+  const inp=Number(usage.prompt_tokens??usage.input_tokens??0),out=Number(usage.completion_tokens??usage.output_tokens??0);
+  const p=modelPrice(model);
+  let usd=(Number.isFinite(p.input)?inp*p.input/1e6:NaN)+(Number.isFinite(p.output)?out*p.output/1e6:NaN);
+  if(!Number.isFinite(usd))usd=NaN;
+  let irt=Number.isFinite(usd)&&lastCredit?.exchange_rate?usd*Number(lastCredit.exchange_rate):NaN;
+  const requestId=r.headers.get('avalai-request-id')||null;
+  $('advisorAnswer').textContent=answer;
+  $('consultCostUsd').textContent=fmtUsd(usd);
+  $('consultCostIrt').textContent=fmtIrt(irt);
+  $('consultTokens').textContent=`${inp.toLocaleString('fa-IR')} / ${out.toLocaleString('fa-IR')}`;
+  lastConsultation={model,usage,usd,irt,requestId,at:new Date().toISOString(),exact:false};
+  $('advisorState').textContent=`پاسخ دریافت شد · در حال تطبیق هزینه دقیق تراکنش... · شناسه: ${requestId||'در دسترس نیست'}`;
+  // AvalAI transaction lookup provides exact billed cost; it can take up to ~30 seconds to appear.
+  if(requestId){
+   for(let attempt=0;attempt<3;attempt++){
+    await new Promise(resolve=>setTimeout(resolve,3500));
+    try{
+     const lr=await fetch('https://api.avalai.ir/user/v1/transactions/lookup',{method:'POST',headers:keyHeaders(),body:JSON.stringify({transaction_ids:[requestId]})});
+     const ld=await lr.json();
+     if(lr.ok && ld.transactions?.length){
+      const tx=ld.transactions[0];
+      const exactUsd=Number(tx.cost?.unit),exactIrt=Number(tx.cost?.paid_irt);
+      if(Number.isFinite(exactUsd)){$('consultCostUsd').textContent=fmtUsd(exactUsd);lastConsultation.usd=exactUsd;}
+      if(Number.isFinite(exactIrt)){$('consultCostIrt').textContent=fmtIrt(exactIrt);lastConsultation.irt=exactIrt;}
+      lastConsultation.exact=true;
+      $('advisorState').textContent=`هزینه دقیق از تراکنش AvalAI دریافت شد · مدل: ${model} · شناسه: ${requestId}`;
+      break;
+     }
+    }catch(_){}
+   }
+  }
+  if(!lastConsultation.exact)$('advisorState').textContent=`پاسخ دریافت شد · هزینه فعلاً تخمینی است و تراکنش هنوز در گزارش AvalAI پیدا نشد · مدل: ${model} · شناسه: ${requestId||'در دسترس نیست'}`;
+  try{await refreshCredit();}catch(_){}
+ }catch(e){
+  $('advisorAnswer').textContent='خطا در دریافت مشاوره: '+e.message;
+  $('advisorState').textContent='اگر با file:// اجرا می‌کنی و خطای CORS می‌بینی، باید نسخه را روی HTTPS یا پشت یک Proxy امن اجرا کنی.';
+ }finally{btn.disabled=false;btn.textContent='دریافت مشاوره';}
+}
+
+async function copyAdvisorAnswer(){
+ const answer=$('advisorAnswer').innerText.trim();
+ const state=$('copyAdvisorState');
+ if(!answer || answer==='پاسخ مشاور اینجا نمایش داده می‌شود.' || answer==='در حال تحلیل...'){
+  state.textContent='هنوز پاسخی برای کپی وجود ندارد.';return;
+ }
+ try{
+  if(navigator.clipboard && window.isSecureContext){
+   await navigator.clipboard.writeText(answer);
+  }else{
+   const ta=document.createElement('textarea');ta.value=answer;
+   ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);
+   ta.select();const ok=document.execCommand('copy');ta.remove();
+   if(!ok)throw new Error('clipboard unavailable');
+  }
+  state.textContent='پاسخ کامل کپی شد.';
+ }catch(e){state.textContent='کپی خودکار ممکن نشد؛ متن پاسخ را انتخاب و کپی کن.';}
+}
+$('copyAdvisorAnswer')?.addEventListener('click',copyAdvisorAnswer);
+
+async function searchGithubRepos(){
+ const need=$('githubNeed').value.trim();
+ if(!need){$('githubResults').innerHTML='<div class="empty">شرح نیاز را وارد کن.</div>';return;}
+ const lang=$('githubLanguage').value,stars=$('githubStars').value,sort=$('githubSort').value;
+ const terms=need.replace(/[^\p{L}\p{N}\s._+-]/gu,' ').trim().split(/\s+/).slice(0,10).join(' ');
+ let query=terms+' in:name,description,readme';
+ if(lang)query+=' language:'+lang;
+ if(Number(stars)>0)query+=' stars:>='+stars;
+ const order=sort==='stars'?'stars':sort==='updated'?'updated':'';
+ const url='https://api.github.com/search/repositories?q='+encodeURIComponent(query)+'&per_page=12'+(order?'&sort='+order+'&order=desc':'');
+ $('githubCodeSearch').href='https://github.com/search?q='+encodeURIComponent(need)+'&type=code';
+ const btn=$('searchGithub');btn.disabled=true;btn.textContent='در حال جست‌وجو...';
+ $('githubResults').innerHTML='<div class="empty">در حال جست‌وجوی مخازن عمومی GitHub...</div>';
+ try{
+  const r=await fetch(url,{headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});
+  const d=await r.json();
+  if(!r.ok)throw new Error(d.message||('HTTP '+r.status));
+  if(!d.items?.length){$('githubResults').innerHTML='<div class="empty">مخزن مناسبی پیدا نشد. عبارت را کوتاه‌تر یا انگلیسی‌تر کن.</div>';return;}
+  $('githubResults').innerHTML=`<p class="note">${Number(d.total_count||0).toLocaleString('fa-IR')} مخزن مطابق جست‌وجو · ۱۲ نتیجه اول</p><div class="cards">${d.items.map(repo=>{
+   const safeUrl=esc(repo.html_url),full=esc(repo.full_name),desc=esc(repo.description||'بدون توضیح'),langName=esc(repo.language||'نامشخص');
+   return `<article class="card"><div class="repo-result"><div><h4>${full}</h4><p>${desc}</p></div><span class="badge">${langName}</span></div><div class="meta"><span class="tag">★ ${Number(repo.stargazers_count||0).toLocaleString('en-US')}</span><span class="tag">Fork ${Number(repo.forks_count||0).toLocaleString('en-US')}</span><span class="tag">به‌روزرسانی: ${ago(repo.updated_at)}</span><span class="tag">${esc(repo.license?.spdx_id||'مجوز نامشخص')}</span></div><div class="cardfoot"><small>${repo.archived?'آرشیو شده':'فعال'} · ${repo.default_branch?'branch: '+esc(repo.default_branch):''}</small><div class="card-actions"><a class="mini" href="${safeUrl}" target="_blank" rel="noopener">مشاهده مخزن</a><button class="mini" data-use-repo="${safeUrl}">بررسی سلامت</button></div></div></article>`;
+  }).join('')}</div>`;
+  $('githubResults').querySelectorAll('[data-use-repo]').forEach(b=>b.addEventListener('click',()=>{$('repoUrl').value=b.dataset.useRepo;$('githubHealth').scrollIntoView({behavior:'smooth'});checkRepo();}));
+ }catch(e){$('githubResults').innerHTML=`<div class="empty">جست‌وجو ناموفق بود: ${esc(e.message)}<br>ممکن است محدودیت نرخ API عمومی GitHub یا مشکل شبکه رخ داده باشد.</div>`;}
+ finally{btn.disabled=false;btn.textContent='جست‌وجوی مخازن مرتبط';}
+}
+$('connectAvalai').addEventListener('click',connectAvalai);
+$('refreshCredit').addEventListener('click',async()=>{try{await refreshCredit();$('keyStatus').textContent='موجودی به‌روزرسانی شد.'}catch(e){$('keyStatus').textContent=e.message}});
+$('forgetKey').addEventListener('click',()=>{advisorKey='';$('avalaiKey').value='';$('creditIrt').textContent='—';$('creditUsd').textContent='—';$('creditTier').textContent='—';$('keyStatus').textContent='کلید از حافظه صفحه پاک شد.';});
+$('askAdvisor').addEventListener('click',askAdvisor);
+$('searchGithub').addEventListener('click',searchGithubRepos);
+
+
+// ===== v6: agent marketplace + technology library =====
+const agentCatalog=[
+ {n:'GPT Researcher',c:'research',d:'ایجنت تحقیق وب؛ گردآوری منابع و تولید گزارش پژوهشی.',l:'Python',fit:'conditional',tags:['Web research','Report','Sources'],url:'https://github.com/assafelovic/gpt-researcher',kind:'Ready Agent',note:'برای اجرای کامل معمولاً به کلید مدل و جست‌وجو و محیط Python نیاز دارد.'},
+ {n:'Open Deep Research',c:'research',d:'الگوی تحقیق عمیق چندمرحله‌ای و تولید گزارش با منابع.',l:'Python',fit:'conditional',tags:['Deep research','Multi-step'],url:'https://github.com/langchain-ai/open_deep_research',kind:'Agent Template',note:'برای سازگاری مدل و provider تنظیمات لازم است.'},
+ {n:'OpenHands',c:'coding',d:'ایجنت توسعه نرم‌افزار برای کار با کد، مخزن و وظایف مهندسی.',l:'Python',fit:'server',tags:['Coding','GitHub','Terminal'],url:'https://github.com/All-Hands-AI/OpenHands',kind:'Ready Agent',note:'اجرای ایمن و کامل معمولاً به محیط ایزوله و منابع سروری نیاز دارد.'},
+ {n:'SWE-agent',c:'coding',d:'ایجنت پژوهشی/مهندسی برای حل مسئله و issueهای کد در مخازن.',l:'Python',fit:'server',tags:['Software engineering','GitHub issues'],url:'https://github.com/SWE-agent/SWE-agent',kind:'Ready Agent',note:'برای اجرای جدی به محیط کدنویسی ایزوله و منابع پردازشی نیاز دارد.'},
+ {n:'Open Interpreter',c:'coding',d:'عامل اجرای کد و تعامل با محیط محلی با کنترل کاربر.',l:'Python',fit:'conditional',tags:['Code execution','Local assistant'],url:'https://github.com/OpenInterpreter/open-interpreter',kind:'Ready Agent',note:'دسترسی سیستم‌عامل حساس است؛ sandbox و تأیید انسانی ضروری است.'},
+ {n:'Browser Use',c:'browser',d:'ساخت ایجنتی که با مرورگر و صفحات وب تعامل می‌کند.',l:'Python',fit:'conditional',tags:['Browser','Playwright','Web tasks'],url:'https://github.com/browser-use/browser-use',kind:'Agent Framework',note:'به مرورگر و runtime مناسب نیاز دارد؛ برای Worker خالص مناسب نیست.'},
+ {n:'AutoGPT',c:'multi',d:'پلتفرم و چارچوب ساخت عامل‌های خودکار و گردش‌کارهای چندمرحله‌ای.',l:'Python',fit:'server',tags:['Autonomous agents','Workflows'],url:'https://github.com/Significant-Gravitas/AutoGPT',kind:'Agent Platform',note:'نسخه‌ها و اجزای پلتفرم را از نظر منابع و مجوز جداگانه بررسی کن.'},
+ {n:'CrewAI',c:'multi',d:'ساخت تیم ایجنت‌های نقش‌محور مانند پژوهشگر، نویسنده و بازبین.',l:'Python',fit:'conditional',tags:['Multi-agent','Roles','Tasks'],url:'https://github.com/crewAIInc/crewAI',kind:'Framework',note:'خود چارچوب است، نه یک ایجنت نهایی؛ مدل و ابزارها جدا هستند.'},
+ {n:'LangGraph',c:'multi',d:'گردش‌کار ایجنتی stateful با checkpoint، توقف و تأیید انسانی.',l:'Python',fit:'conditional',tags:['Orchestration','Human approval'],url:'https://github.com/langchain-ai/langgraph',kind:'Framework',note:'برای کنترل دقیق فرایند گزینه قدرتمند؛ سرویس persistence ممکن است لازم شود.'},
+ {n:'MetaGPT',c:'multi',d:'الگوی تیم چندعاملی برای تقسیم نقش‌های توسعه و تولید خروجی.',l:'Python',fit:'server',tags:['Multi-agent','Software team'],url:'https://github.com/geekan/MetaGPT',kind:'Ready Framework',note:'پیچیدگی و هزینه مدل‌ها را پیش از استفاده بسنج.'},
+ {n:'Dify',c:'multi',d:'پلتفرم بصری ساخت اپلیکیشن‌های LLM، گردش‌کار و ایجنت.',l:'API',fit:'server',tags:['Visual builder','RAG','Workflow'],url:'https://github.com/langgenius/dify',kind:'Platform',note:'برای self-host کامل معمولاً Docker و سرویس‌های جانبی می‌خواهد؛ روی هاست اشتراکی ساده فرض نکن.'},
+ {n:'Flowise',c:'multi',d:'سازنده بصری جریان‌های LLM و Agent با اتصال ابزارها.',l:'JavaScript',fit:'server',tags:['Visual builder','Nodes','Tools'],url:'https://github.com/FlowiseAI/Flowise',kind:'Platform',note:'برای میزبانی پایدار معمولاً Node server لازم است.'},
+ {n:'LlamaIndex',c:'research',d:'ساخت RAG، عامل‌های متصل به داده و جریان‌های دانش.',l:'Python',fit:'conditional',tags:['RAG','Agents','Data'],url:'https://github.com/run-llama/llama_index',kind:'Framework',note:'کتابخانه است؛ اجرای embedding و ذخیره‌ساز را جدا انتخاب کن.'},
+ {n:'Social media agent starter',c:'social',d:'برای کشف پروژه‌های مدیریت شبکه اجتماعی و انتشار مجاز، جست‌وجوی زنده GitHub را اجرا کن.',l:'API',fit:'conditional',tags:['Social publishing','Scheduler'],url:'https://github.com/topics/social-media-automation',kind:'Live discovery',note:'این کارت یک دسته جست‌وجو است، نه ادعای وجود یک محصول واحد. API رسمی هر شبکه را بررسی کن.'},
+ {n:'YouTube automation projects',c:'content',d:'پروژه‌های متن‌باز تولید، پردازش و مدیریت گردش‌کار ویدئوی YouTube.',l:'API',fit:'conditional',tags:['YouTube','Video','Subtitles'],url:'https://github.com/topics/youtube-automation',kind:'Live discovery',note:'حقوق استفاده از ویدئو، API quota و شرایط YouTube باید رعایت شود.'}
+];
+const techCatalog=[
+ ['LangGraph','agent','Python','python','گردش‌کار stateful، checkpoint، human-in-the-loop','https://github.com/langchain-ai/langgraph','نیاز به runtime برای اجرای طولانی؛ API سبک را می‌توان جدا کرد.'],
+ ['CrewAI','agent','Python','python','تیم چندایجنتی نقش‌محور و تقسیم وظایف','https://github.com/crewAIInc/crewAI','چارچوب؛ هزینه مدل و ابزار جداست.'],
+ ['Pydantic AI','agent','Python','python','ایجنت تایپ‌سیف، ابزارها و خروجی ساختاریافته','https://github.com/pydantic/pydantic-ai','برای میکروسرویس‌های Python مناسب‌تر از هاست PHP است.'],
+ ['Agno','agent','Python','python','ساخت Agent، تیم و اپلیکیشن‌های چندوجهی','https://github.com/agno-agi/agno','نیازهای ذخیره‌سازی و مدل را متناسب با قابلیت انتخاب کن.'],
+ ['smolagents','agent','Python','python','فریم‌ورک سبک عامل‌های ابزارمحور','https://github.com/huggingface/smolagents','اجرای کد تولیدشده را sandbox کن.'],
+ ['OpenAI Agents SDK','agent','Python','python','handoff، tools، guardrails و tracing','https://github.com/openai/openai-agents-python','برای provider سازگار یا adapter سفارشی تست شود؛ وابستگی OpenAI-specific را فرض نکن.'],
+ ['MCP Python SDK','agent','Python','python','ساخت MCP server/client برای اتصال ابزار','https://github.com/modelcontextprotocol/python-sdk','MCP اختیاری است؛ REST/function calling نیز جایگزین‌اند.'],
+ ['ChromaDB','memory','Python','python','پایگاه داده برداری برای RAG و جست‌وجوی معنایی','https://github.com/chroma-core/chroma','برای سرویس پایدار، محل ذخیره و backup را بررسی کن.'],
+ ['Qdrant','memory','API','server','Vector database و فیلترگذاری پیشرفته','https://github.com/qdrant/qdrant','Cloud یا self-host؛ اجرای دائمی روی هاست اشتراکی فرض نشود.'],
+ ['FAISS','memory','Python','python','جست‌وجوی برداری محلی و سریع','https://github.com/facebookresearch/faiss','نیازهای نصب binary و معماری CPU را بررسی کن.'],
+ ['LanceDB','memory','Python','python','ذخیره‌سازی برداری/چندوجهی و جست‌وجو','https://github.com/lancedb/lancedb','برای حجم داده و دسترسی همزمان benchmark لازم است.'],
+ ['sentence-transformers','memory','Python','python','Embedding و reranking متن','https://github.com/UKPLab/sentence-transformers','مدل محلی ممکن است RAM/CPU زیاد بخواهد؛ API embedding جایگزین است.'],
+ ['SQLite-Vec','memory','Python','edge','جست‌وجوی برداری داخل SQLite','https://github.com/asg017/sqlite-vec','برای prototype سبک؛ سازگاری binding با محیط اجرا را تست کن.'],
+ ['Jinja2','content','Python','python','قالب‌سازی متن، HTML و پست‌های چندقالبی','https://github.com/pallets/jinja','سبک؛ مناسب تولید template محور.'],
+ ['spaCy','content','Python','python','پردازش زبان، NER و تحلیل متن','https://github.com/explosion/spaCy','مدل‌های زبانی جدا دانلود می‌شوند؛ فارسی را با pipeline واقعی ارزیابی کن.'],
+ ['Transformers','content','Python','server','مدل‌های NLP، طبقه‌بندی، خلاصه‌سازی و ترجمه','https://github.com/huggingface/transformers','اجرای مدل‌های بزرگ محلی به منابع قابل توجه نیاز دارد؛ API مدل گزینه جایگزین.'],
+ ['Pillow','media','Python','python','تغییر اندازه، ساخت کاور و پردازش تصویر','https://github.com/python-pillow/Pillow','برای پردازش تصویر سبک مناسب‌تر است؛ محدودیت حافظه مهم است.'],
+ ['OpenCV','media','Python','python','پردازش تصویر و فریم ویدئو','https://github.com/opencv/opencv','نسخه headless و وابستگی‌های سیستم را بررسی کن.'],
+ ['FFmpeg','media','API','server','تبدیل، برش، ترکیب، صدا و زیرنویس ویدئو','https://ffmpeg.org/','باینری سیستم‌عامل است؛ روی Cloudflare Worker اجرا نمی‌شود.'],
+ ['MoviePy','media','Python','server','تدوین ویدئو با Python و ترکیب کلیپ‌ها','https://github.com/Zulko/moviepy','به FFmpeg و زمان پردازش/فضای دیسک نیاز دارد.'],
+ ['PySceneDetect','media','Python','server','تشخیص صحنه و برش ویدئو','https://github.com/Breakthrough/PySceneDetect','پردازش فایل ویدئو؛ مناسب Python worker دارای FFmpeg.'],
+ ['faster-whisper','media','Python','server','تبدیل گفتار به متن با Whisper بهینه‌شده','https://github.com/SYSTRAN/faster-whisper','اجرای محلی CPU/GPU و مدل‌ها RAM می‌خواهد؛ API transcription ساده‌تر است.'],
+ ['pydub','media','Python','server','برش و ترکیب فایل صوتی','https://github.com/jiaaro/pydub','برای بسیاری از فرمت‌ها به FFmpeg نیاز دارد.'],
+ ['librosa','media','Python','python','تحلیل ویژگی‌های صوت و موسیقی','https://github.com/librosa/librosa','پردازش صوت؛ حجم فایل و حافظه را مدیریت کن.'],
+ ['Meta / Instagram Graph API','social','API','edge','مدیریت رسانه و انتشار برای حساب‌های واجد شرایط','https://developers.facebook.com/docs/instagram-platform/','دسترسی، نوع حساب، مجوزها و محدودیت API شرط است؛ API رسمی اولویت دارد.'],
+ ['YouTube Data API','social','API','edge','مدیریت ویدئو و داده کانال با OAuth','https://developers.google.com/youtube/v3','سهمیه و سیاست API را لحاظ کن؛ انتشار نیازمند OAuth و مجوز مناسب است.'],
+ ['Mastodon.py','social','Python','python','کلاینت Python برای Mastodon API','https://github.com/halcy/Mastodon.py','برای هر سرور و سیاست instance تفاوت‌ها را لحاظ کن.'],
+ ['Tweepy','social','Python','python','کلاینت Python برای X API','https://github.com/tweepy/tweepy','دسترسی و هزینه X API تابع پلن و شرایط جاری است.'],
+ ['Mastodon / ActivityPub','social','API','edge','پروتکل و API شبکه‌های اجتماعی فدره','https://www.w3.org/TR/activitypub/','برای انتشار بین‌سرویسی، محدودیت هر سرور جداست.'],
+ ['HTTPX','web','Python','edge','HTTP client همگام/ناهمگام برای API و fetch','https://github.com/encode/httpx','سبک و مناسب سرویس‌های API؛ محدودیت مقصد و SSRF را کنترل کن.'],
+ ['Beautiful Soup','web','Python','python','استخراج داده از HTML','https://www.crummy.com/software/BeautifulSoup/','برای scraping مجاز؛ robots/terms و نرخ درخواست رعایت شود.'],
+ ['Scrapy','web','Python','server','خزش و جمع‌آوری داده در مقیاس','https://github.com/scrapy/scrapy','برای jobهای حجیم، worker و صف مناسب لازم است.'],
+ ['Playwright','web','Python','server','مرورگر خودکار برای سایت‌های JavaScriptی','https://github.com/microsoft/playwright','نیازمند browser binaries و منابع؛ معمولاً Python hosting/سرور.'],
+ ['Trafilatura','web','Python','python','استخراج متن اصلی مقاله و صفحات خبری','https://github.com/adbar/trafilatura','مناسب پردازش متنی پس از دریافت مجاز صفحه.'],
+ ['APScheduler','workflow','Python','python','زمان‌بندی job در اپلیکیشن Python','https://github.com/agronholm/apscheduler','برای اجرا باید process زنده باشد؛ روی هاست محدود ممکن است پایدار نباشد.'],
+ ['Celery','workflow','Python','server','صف وظایف توزیع‌شده با broker و worker','https://github.com/celery/celery','بدون worker و broker دائمی عملاً راهکار کامل نیست.'],
+ ['RQ','workflow','Python','server','صف ساده Python مبتنی بر Redis','https://github.com/rq/rq','به Redis و worker دائمی نیاز دارد.'],
+ ['Cloudflare Queues','workflow','API','edge','صف پیام برای پردازش غیرهمزمان روی Cloudflare','https://developers.cloudflare.com/queues/','سهمیه و محدودیت پلن را بررسی کن؛ جایگزین FFmpeg نیست.'],
+ ['GitHub Actions','workflow','API','edge','CI/CD، زمان‌بندی و jobهای مخزن','https://docs.github.com/en/actions','برای کارهای کوتاه و غیرحساس؛ محدودیت دقیقه و سیاست استفاده را لحاظ کن.']
+];
+function agentCard(a){const fit=a.fit==='good'?'<span class="fit">بدون VPS مناسب‌تر</span>':a.fit==='conditional'?'<span class="fit mid">مشروط به Python Hosting</span>':'<span class="fit low">معمولاً سرور قوی</span>';return `<article class="lib-card"><div class="sectionhead"><h4>${a.n}</h4><span class="badge">${a.kind}</span></div><p>${a.d}</p><div class="meta"><span class="tag">${a.l}</span>${a.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>${fit}<p>${a.note}</p><div class="lib-actions"><a href="${a.url}" target="_blank" rel="noopener">مخزن / منبع ↗</a></div></article>`}
+function renderAgents(){const q=($('agentSearch')?.value||'').toLowerCase(),c=$('agentCategory')?.value||'all',f=$('agentFit')?.value||'all';const rows=agentCatalog.filter(a=>(c==='all'||a.c===c)&&(f==='all'||(f==='good'?a.fit==='good':f==='conditional'?a.fit==='conditional':a.fit==='server'))&&[a.n,a.d,a.kind,...a.tags].join(' ').toLowerCase().includes(q));$('agentCards').innerHTML=rows.length?rows.map(agentCard).join(''):'<div class="empty">موردی پیدا نشد. جست‌وجو یا فیلتر را تغییر بده.</div>';$('agentCount').textContent=`${rows.length} مورد از ${agentCatalog.length} مورد نمایشی`}
+let activeTech='all';
+function renderTech(){const q=($('techSearch')?.value||'').toLowerCase(),lang=$('techLang')?.value||'all',rt=$('techRuntime')?.value||'all';const rows=techCatalog.filter(a=>(activeTech==='all'||a[1]===activeTech)&&(lang==='all'||(lang==='JavaScript'?a[2]==='JavaScript':a[2]===lang))&&(rt==='all'||a[3]===rt)&&a.join(' ').toLowerCase().includes(q));$('techCards').innerHTML=rows.length?rows.map(a=>`<article class="lib-card"><h4>${a[0]}</h4><div class="meta"><span class="tag">${({agent:'Agent',memory:'Memory / RAG',content:'Content',media:'Media',social:'Social API',web:'Web / Research',workflow:'Workflow'})[a[1]]}</span><span class="tag">${a[2]}</span></div><p>${a[4]}</p><span class="${a[3]==='edge'?'fit':a[3]==='python'?'fit mid':'fit low'}">${a[3]==='edge'?'Edge-friendly (با محدودیت)':a[3]==='python'?'Python runtime':'سرور/پردازشگر محتمل'}</span><p>${a[6]}</p><a href="${a[5]}" target="_blank" rel="noopener">مستندات / مخزن ↗</a></article>`).join(''):'<div class="empty">کتابخانه‌ای مطابق فیلتر پیدا نشد.</div>';$('techCount').textContent=`${rows.length} ابزار از ${techCatalog.length} مورد`}
+['agentSearch','agentCategory','agentFit'].forEach(id=>$(id).addEventListener('input',renderAgents));
+['techSearch','techLang','techRuntime'].forEach(id=>$(id).addEventListener('input',renderTech));
+$('techTabs').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{$('techTabs').querySelectorAll('button').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeTech=b.dataset.cat;renderTech()}));
+renderAgents();renderTech();
+async function searchAgentLive(){const q=$('agentLiveQuery').value.trim()||'AI agent social media content automation';const lang=$('agentLiveLang').value;const sort=$('agentLiveSort').value;let query=q+' in:name,description,readme';if(lang)query+=' language:'+lang;const url='https://api.github.com/search/repositories?q='+encodeURIComponent(query)+'&per_page=12&sort='+sort+'&order=desc';$('agentLiveDirect').href='https://github.com/search?q='+encodeURIComponent(q)+'&type=repositories';$('agentLiveResults').innerHTML='<div class="empty">در حال جست‌وجو در GitHub...</div>';const b=$('agentLiveSearch');b.disabled=true;try{const r=await fetch(url,{headers:{Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'}});const d=await r.json();if(!r.ok)throw new Error(d.message||r.status);if(!d.items?.length){$('agentLiveResults').innerHTML='<div class="empty">نتیجه‌ای پیدا نشد.</div>';return;}$('agentLiveResults').innerHTML=`<p class="note">${Number(d.total_count||0).toLocaleString('fa-IR')} مخزن پیدا شد؛ ۱۲ نتیجه اول. داده‌ها از GitHub API است.</p><div class="lib-grid">${d.items.map(x=>`<article class="lib-card"><h4 dir="ltr">${esc(x.full_name)}</h4><p>${esc(x.description||'بدون توضیح')}</p><div class="meta"><span class="tag">★ ${Number(x.stargazers_count).toLocaleString('en-US')}</span><span class="tag">${esc(x.language||'نامشخص')}</span><span class="tag">${esc(x.license?.spdx_id||'مجوز نامشخص')}</span></div><p>${x.archived?'آرشیو شده':'وضعیت مخزن: آرشیو نشده'} · آخرین تغییر: ${ago(x.updated_at)}</p><a href="${esc(x.html_url)}" target="_blank" rel="noopener">مشاهده مخزن ↗</a></article>`).join('')}</div>`}catch(e){$('agentLiveResults').innerHTML=`<div class="empty">خطا در جست‌وجو: ${esc(e.message)}. محدودیت نرخ GitHub یا اتصال اینترنت را بررسی کن.</div>`}finally{b.disabled=false}}
+$('agentLiveSearch').addEventListener('click',searchAgentLive);
+$('agentLiveQuery').addEventListener('keydown',e=>{if(e.key==='Enter')searchAgentLive()});
+function buildAgentPlan(){const raw=$('agentIdea').value.trim();if(!raw){$('agentPlanResult').innerHTML='<div class="empty">ابتدا شرح پروژه را بنویس.</div>';return}const t=raw.toLowerCase();const hasVideo=/video|ویدئو|ویدیو|کلیپ|reel|short/.test(t),hasSocial=/instagram|اینستاگرام|youtube|یوتیوب|tiktok|تیک.?تاک|شبکه اجتماعی|تلگرام|social/.test(t),hasResearch=/research|تحقیق|جست.?وجو|موضوعات داغ|خبر/.test(t),hasBrowser=/browser|مرورگر|سایت|وب.?سایت/.test(t),hasMemory=/حافظه|دانش|سند|فایل|pdf|rag/.test(t);let picks=[];if(hasResearch)picks.push(['تحقیق و کشف','GPT Researcher / Open Deep Research','تحقیق وب، گردآوری منابع و گزارش؛ برای نمونه اولیه نیازمند API جست‌وجو و مدل.']);if(hasBrowser)picks.push(['تعامل وب','Playwright یا Browser Use','فقط برای حساب‌ها و سایت‌های مجاز؛ اجرای مرورگر نیازمند runtime مناسب است.']);picks.push(['ارکستریشن','LangGraph یا Pydantic AI','LangGraph برای جریان چندمرحله‌ای و توقف/تأیید؛ Pydantic AI برای ایجنت سبک و تایپ‌سیف.']);if(hasMemory)picks.push(['حافظه و دانش','SQLite-Vec / Chroma / Qdrant','ابتدا SQLite-Vec یا دیتابیس موجود؛ Qdrant وقتی حجم و نیاز جست‌وجو توجیه کند.']);if(hasVideo)picks.push(['پردازش رسانه','FFmpeg + faster-whisper + Pillow؛ MoviePy در صورت نیاز','این بخش روی Worker خالص اجرا نمی‌شود؛ وجود FFmpeg، فضای دیسک و Python worker باید تست شود.']);if(hasSocial)picks.push(['انتشار اجتماعی','API رسمی هر شبکه + OAuth + تأیید انسانی','ابتدا شبکه‌هایی که API و دسترسی مجاز دارند؛ انتشار مرورگری مسیر شکننده‌تر و مشروط به سیاست پلتفرم است.']);picks.push(['صف و زمان‌بندی','Cloudflare Cron/Queues یا جدول jobs + API','برای job سبک مناسب؛ پردازش سنگین به worker پردازشی جدا نیاز دارد.']);const html=`<div class="result"><span>نقشه اولیه فناوری برای درخواست</span><p class="note">${esc(raw)}</p><div class="lib-grid">${picks.map(x=>`<article class="lib-card"><h4>${x[0]}</h4><b>${x[1]}</b><p>${x[2]}</p></article>`).join('')}</div><div class="callout"><b>محدودیت مهم:</b> بدون تأیید مشخصات هاست Python، نمی‌توان اجرای FFmpeg، Playwright، مدل‌های محلی یا worker دائمی را قطعی فرض کرد. شروع پیشنهادی: orchestration سبک روی Worker، ذخیره job در دیتابیس و پردازش رسانه فقط در میزبان آزمایش‌شده.</div><p class="note">این خروجی قواعدمحور و مقدماتی است؛ برای طراحی نهایی، آن را برای مشاور فنی AvalAI ارسال کن.</p></div>`;$('agentPlanResult').innerHTML=html;window.lastAgentPlan=raw+'\n\nلطفاً معماری اجرایی، ابزارها، مدل‌ها، هزینه، ریسک‌ها و سازگاری با محدودیت نداشتن VPS را دقیق پیشنهاد بده.'}
+$('buildAgentPlan').addEventListener('click',buildAgentPlan);
+$('sendPlanAdvisor').addEventListener('click',()=>{const raw=$('agentIdea').value.trim();if(!raw){$('agentPlanResult').innerHTML='<div class="empty">ابتدا شرح پروژه را بنویس.</div>';return}const box=$('advisorQuestion');if(box){box.value='برای این پروژه معماری فنی دقیق پیشنهاد بده. اول ایجنت‌های آماده رایگان و کتابخانه‌های موجود را بررسی کن و فقط اگر مناسب نبود از صفر طراحی کن. محدودیت: VPS ندارم؛ هاست اشتراکی، Cloudflare Workers، GitHub و Telegram در دسترس‌اند؛ امکانات Python Hosting باید تأیید شود. هزینه‌ها و APIها را تفکیک کن.\n\n'+raw;$('advisorPanel').scrollIntoView({behavior:'smooth'});box.focus()}else{buildAgentPlan();$('agentPlanResult').insertAdjacentHTML('beforeend','<p class="note">پنل مشاور در این نسخه در دسترس نیست؛ خروجی بالا را کپی کن.</p>')}});
+
+</script>
+</body>
+</html>
